@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DiabetesSelfManagement-Wundergrads.iml" filepath="$PROJECT_DIR$/DiabetesSelfManagement-Wundergrads.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/diabeteseselfmanagement_wundergrads.iml" filepath="$PROJECT_DIR$/diabeteseselfmanagement_wundergrads.iml" />
     </modules>
   </component>
 </project>

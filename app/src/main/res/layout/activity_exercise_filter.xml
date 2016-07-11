@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.ExerciseFilter">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/filter_exercise_query"
+        android:id="@+id/textViewExerciseFilterHeader"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewExerciseImage"
+        android:layout_below="@+id/textViewExerciseFilterHeader"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/exercise_image"
+        android:contentDescription="@string/exercise_image" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextExercise"
+        android:layout_below="@+id/imageViewExerciseImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/checkBox"
+        android:layout_toStartOf="@+id/checkBox"
+        android:hint="@string/enter_exercise" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exact_match"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/imageViewExerciseImage"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:checked="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editTextStartDate"
+        android:layout_below="@+id/editTextExercise"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextExercise"
+        android:layout_alignEnd="@+id/editTextExercise"
+        android:hint="@string/start_date" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editTextEndDate"
+        android:layout_below="@+id/editTextStartDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextStartDate"
+        android:layout_alignEnd="@+id/editTextStartDate"
+        android:hint="@string/end_date" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editTextEarliestTime"
+        android:layout_below="@+id/editTextEndDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="@string/earliest_time"
+        android:layout_alignRight="@+id/editTextEndDate"
+        android:layout_alignEnd="@+id/editTextEndDate" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editTextLatestTime"
+        android:layout_below="@+id/editTextEarliestTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextEndDate"
+        android:layout_alignEnd="@+id/editTextEndDate"
+        android:hint="@string/latest_time" />
+</RelativeLayout>

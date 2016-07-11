@@ -9,7 +9,8 @@
         android:id="@+id/ImageViewRegimen"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/regimen_image"
-        android:scaleType="matrix" />
+        android:scaleType="matrix"
+        android:contentDescription="@string/regimen_image" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -17,7 +18,7 @@
         android:inputType="text"
         android:ems="20"
         android:id="@+id/EditTextPrescribedDietInput"
-        android:hint="Enter Prescribed Diet"
+        android:hint="@string/enter_prescribed_diet"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="75dp"
@@ -29,7 +30,7 @@
         android:inputType="text"
         android:ems="20"
         android:id="@+id/EditTextPrescribedExerciseInput"
-        android:hint="Enter Prescribed Exercise"
+        android:hint="@string/enter_prescribed_exercise"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="75dp"
@@ -41,7 +42,7 @@
         android:inputType="text"
         android:ems="20"
         android:id="@+id/EditTextPrescribedMedicationInput"
-        android:hint="Enter Prescribed Medication"
+        android:hint="@string/enter_prescribed_medication"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="75dp"
@@ -51,7 +52,7 @@
         style="?android:attr/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:id="@+id/ButtonSubmitPrescribedMedication"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>

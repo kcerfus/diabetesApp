@@ -30,7 +30,12 @@
         <activity android:name=".DietInput" />
         <activity android:name=".ExerciseInput" />
         <activity android:name=".MedicationInput" />
-        <activity android:name=".RegimenInput"></activity>
+        <activity android:name=".RegimenInput" />
+        <activity android:name=".BGLFilter" />
+        <activity android:name=".DietFilter" />
+        <activity android:name=".ExerciseFilter" />
+        <activity android:name=".MedicationFilter" />
+        <activity android:name=".RegimenFilter"></activity>
     </application>
 
 </manifest>

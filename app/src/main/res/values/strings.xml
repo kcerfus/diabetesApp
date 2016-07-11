@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DiabetesSelfManagement-Wundergrads</string>
+    <string name="select_your_graph">Select Your Graph</string>
+    <string-array name="graph_types">
+        <item>BGL Table</item>
+        <item>Diet Table</item>
+        <item>Exercise Table</item>
+        <item>Medication Table</item>
+        <item>Regimen Table</item>
+        <item>BGL Line Graph</item>
+        <item>Diet Pie Graph</item>
+        <item>Exercise Bar Graph</item>
+    </string-array>
+
+    <string name="title_activity_graph_display">GraphDisplay</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_table_display">TableDisplay</string>
 </resources>

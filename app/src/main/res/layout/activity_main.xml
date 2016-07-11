@@ -7,50 +7,57 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:rowCount="4"
-        android:columnCount="13"
+        android:rowCount="25"
+        android:columnCount="5"
         android:id="@+id/home_layout">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="124dp"
             android:layout_height="94dp"
             android:text="BGL"
             android:id="@+id/bgl_button"
-            android:layout_row="0"
-            android:layout_column="2" />
+            android:layout_row="23"
+            android:layout_column="1" />
 
         <Button
-            android:layout_width="134dp"
+            android:layout_width="124dp"
             android:layout_height="94dp"
             android:text="Diet"
             android:id="@+id/diet_button"
-            android:layout_row="0"
-            android:layout_column="9" />
-
-        <Button
-            android:layout_width="137dp"
-            android:layout_height="95dp"
-            android:text="Exercise"
-            android:id="@+id/exercise_button"
-            android:layout_row="0"
-            android:layout_column="12" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="93dp"
-            android:text="Regime"
-            android:id="@+id/button4"
-            android:layout_row="2"
+            android:layout_row="23"
             android:layout_column="2" />
 
         <Button
-            android:layout_width="133dp"
+            android:layout_width="124dp"
             android:layout_height="94dp"
-            android:text="New Button"
-            android:id="@+id/button5"
-            android:layout_row="2"
-            android:layout_column="9" />
+            android:text="Exercise"
+            android:id="@+id/exercise_button"
+            android:layout_row="23"
+            android:layout_column="3" />
+
+        <Button
+            android:layout_width="124dp"
+            android:layout_height="94dp"
+            android:text="MEDICATION"
+            android:id="@+id/med_button"
+            android:layout_row="24"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="124dp"
+            android:layout_height="94dp"
+            android:text="Regimen"
+            android:id="@+id/reg_button"
+            android:layout_row="24"
+            android:layout_column="2" />
+
+        <Button
+            android:layout_width="124dp"
+            android:layout_height="94dp"
+            android:text="Graphs"
+            android:id="@+id/graph_button"
+            android:layout_row="24"
+            android:layout_column="3" />
 
     </GridLayout>
 </LinearLayout>

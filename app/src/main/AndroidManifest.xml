@@ -8,6 +8,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".GraphSelection" />
         <activity
             android:name=".GraphDisplay"
@@ -18,7 +25,12 @@
             android:name=".TableDisplay"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_table_display"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".BGLInput" />
+        <activity android:name=".DietInput" />
+        <activity android:name=".ExerciseInput" />
+        <activity android:name=".MedicationInput" />
+        <activity android:name=".RegimenInput"></activity>
     </application>
 
 </manifest>

@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/diabeteseselfmanagement_wundergrads.iml" filepath="$PROJECT_DIR$/diabeteseselfmanagement_wundergrads.iml" />
-      <module fileurl="file://$PROJECT_DIR$/diabeteseselfmanagement_wundergradss.iml" filepath="$PROJECT_DIR$/diabeteseselfmanagement_wundergradss.iml" />
     </modules>
   </component>
 </project>

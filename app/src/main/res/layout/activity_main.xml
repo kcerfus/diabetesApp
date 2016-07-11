@@ -1,69 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:rowCount="5"
+    android:columnCount="4"
+    android:id="@+id/home_layout">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:rowCount="25"
-        android:columnCount="5"
-        android:id="@+id/home_layout">
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="BGL"
+        android:id="@+id/bgl_button"
+        android:layout_row="0"
+        android:layout_column="1" />
 
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:text="BGL"
-            android:id="@+id/bgl_button"
-            android:layout_row="23"
-            android:layout_column="1"
-            android:drawableTop="@drawable/bclImg"/>
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="Diet"
+        android:id="@+id/diet_button"
+        android:layout_row="0"
+        android:layout_column="3" />
 
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:id="@+id/diet_button"
-            android:layout_row="23"
-            android:layout_column="2"
-            android:drawableTop="@drawable/newDiet"
-            android:text="Diet" />
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="Exercise"
+        android:id="@+id/exercise_button"
+        android:layout_row="2"
+        android:layout_column="1" />
 
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:id="@+id/exercise_button"
-            android:layout_row="23"
-            android:layout_column="3"
-            android:drawableTop="@drawable/newWeight"
-            android:text="Exercise" />
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="Medication"
+        android:id="@+id/medication_button"
+        android:layout_row="2"
+        android:layout_column="3" />
 
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:id="@+id/med_button"
-            android:layout_row="24"
-            android:layout_column="1"
-            android:drawableTop="@drawable/newPills"
-            android:text="Medication" />
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="Regimen"
+        android:id="@+id/reg_button"
+        android:layout_row="3"
+        android:layout_column="1" />
 
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:text="Regimen"
-            android:id="@+id/reg_button"
-            android:layout_row="24"
-            android:layout_column="2"
-            android:drawableTop="@drawable/newSchedule"/>
-
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="94dp"
-            android:id="@+id/graph_button"
-            android:layout_row="24"
-            android:layout_column="3"
-            android:drawableTop="@drawable/graphImg"
-            android:text="Graphs" />
-
-    </GridLayout>
-</LinearLayout>
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="153dp"
+        android:text="Graphs"
+        android:id="@+id/graph_button"
+        android:layout_row="3"
+        android:layout_column="3" />
+</GridLayout>

@@ -6,7 +6,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:rowCount="25"
         android:columnCount="5"
         android:id="@+id/home_layout">
@@ -17,7 +17,8 @@
             android:text="BGL"
             android:id="@+id/bgl_button"
             android:layout_row="23"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:drawableTop="@drawable/bclImg"/>
 
         <Button
             android:layout_width="124dp"
@@ -25,7 +26,8 @@
             android:id="@+id/diet_button"
             android:layout_row="23"
             android:layout_column="2"
-            android:drawableTop="@drawable/newDiet"/>
+            android:drawableTop="@drawable/newDiet"
+            android:text="Diet" />
 
         <Button
             android:layout_width="124dp"
@@ -33,7 +35,8 @@
             android:id="@+id/exercise_button"
             android:layout_row="23"
             android:layout_column="3"
-            android:drawableTop="@drawable/newWeight"/>
+            android:drawableTop="@drawable/newWeight"
+            android:text="Exercise" />
 
         <Button
             android:layout_width="124dp"
@@ -41,7 +44,8 @@
             android:id="@+id/med_button"
             android:layout_row="24"
             android:layout_column="1"
-            android:drawableTop="@drawable/newPills"/>
+            android:drawableTop="@drawable/newPills"
+            android:text="Medication" />
 
         <Button
             android:layout_width="124dp"
@@ -49,7 +53,8 @@
             android:text="Regimen"
             android:id="@+id/reg_button"
             android:layout_row="24"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:drawableTop="@drawable/newSchedule"/>
 
         <Button
             android:layout_width="124dp"
@@ -57,7 +62,8 @@
             android:id="@+id/graph_button"
             android:layout_row="24"
             android:layout_column="3"
-            android:drawableTop="@drawable/graphImg"/>
+            android:drawableTop="@drawable/graphImg"
+            android:text="Graphs" />
 
     </GridLayout>
 </LinearLayout>

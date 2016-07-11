@@ -6,7 +6,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:rowCount="25"
         android:columnCount="5"
         android:id="@+id/home_layout">
@@ -22,26 +22,26 @@
         <Button
             android:layout_width="124dp"
             android:layout_height="94dp"
-            android:text="Diet"
             android:id="@+id/diet_button"
             android:layout_row="23"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:drawableTop="@drawable/newDiet"/>
 
         <Button
             android:layout_width="124dp"
             android:layout_height="94dp"
-            android:text="Exercise"
             android:id="@+id/exercise_button"
             android:layout_row="23"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:drawableTop="@drawable/newWeight"/>
 
         <Button
             android:layout_width="124dp"
             android:layout_height="94dp"
-            android:text="MEDICATION"
             android:id="@+id/med_button"
             android:layout_row="24"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:drawableTop="@drawable/newPills"/>
 
         <Button
             android:layout_width="124dp"
@@ -54,10 +54,10 @@
         <Button
             android:layout_width="124dp"
             android:layout_height="94dp"
-            android:text="Graphs"
             android:id="@+id/graph_button"
             android:layout_row="24"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:drawableTop="@drawable/graphImg"/>
 
     </GridLayout>
 </LinearLayout>

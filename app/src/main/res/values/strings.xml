@@ -13,6 +13,12 @@
         <item>Regimen Bar Graph</item>
     </string-array>
 
+    <string name="bgl">BGL</string>
+    <string name="medication">Medication</string>
+    <string name="exercise">Exercise</string>
+    <string name="diet">Diet</string>
+    <string name="regimen">Regimen</string>
+    <string name="graphs">Graphs</string>
     <string name="title_activity_graph_display">GraphDisplay</string>
     <string name="title_activity_table_display">TableDisplay</string>
     <string name="min_bgl">Enter Min BGL</string>

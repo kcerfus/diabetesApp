@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:rowCount="5"
-    android:columnCount="4"
-    android:id="@+id/home_layout">
+    android:columnCount="5"
+    android:id="@+id/home_layout"
+    android:background="#063866">
 
     <Button
         android:layout_width="189dp"
@@ -14,7 +15,8 @@
         android:id="@+id/bgl_button"
         android:layout_row="0"
         android:layout_column="1"
-        android:drawableTop="@drawable/blood_glucose_image"/>
+        android:drawableTop="@drawable/blood_glucose_image"
+        android:onClick="sendMessage" />
 
     <Button
         android:layout_width="189dp"
@@ -23,7 +25,8 @@
         android:id="@+id/diet_button"
         android:layout_row="0"
         android:layout_column="3"
-        android:drawableTop="@drawable/diet_image"/>
+        android:drawableTop="@drawable/good_fork"
+        android:onClick="sendMessage" />
 
     <Button
         android:layout_width="189dp"
@@ -32,7 +35,8 @@
         android:id="@+id/exercise_button"
         android:layout_row="2"
         android:layout_column="1"
-        android:drawableTop="@drawable/exercise_image"/>
+        android:drawableTop="@drawable/exercise_image"
+        android:onClick="sendMessage" />
 
     <Button
         android:layout_width="189dp"
@@ -41,7 +45,8 @@
         android:id="@+id/medication_button"
         android:layout_row="2"
         android:layout_column="3"
-        android:drawableTop="@drawable/medication_image"/>
+        android:drawableTop="@drawable/medication_image"
+        android:onClick="sendMessage" />
 
     <Button
         android:layout_width="189dp"
@@ -52,12 +57,4 @@
         android:layout_column="1"
         android:drawableTop="@drawable/regimen_image"/>
 
-    <Button
-        android:layout_width="189dp"
-        android:layout_height="153dp"
-        android:text="@string/graphs"
-        android:id="@+id/graph_button"
-        android:layout_row="3"
-        android:layout_column="3"
-        android:drawableTop="@drawable/graph_image"/>
 </GridLayout>

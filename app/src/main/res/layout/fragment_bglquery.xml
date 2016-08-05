@@ -6,8 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.BGLFilter">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <EditText
         android:layout_width="wrap_content"
@@ -74,19 +73,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageViewBGL"
         android:src="@drawable/blood_glucose_image"
-        android:layout_below="@+id/textViewBGLFilterTitle"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/blood_glucose_image"
         android:contextClickable="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/filter_bgl_query"
-        android:id="@+id/textViewBGLFilterTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"

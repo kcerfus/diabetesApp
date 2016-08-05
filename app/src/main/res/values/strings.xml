@@ -46,4 +46,11 @@
     <string name="enter_prescribed_exercise">Enter Prescribed Exercise</string>
     <string name="enter_prescribed_medication">Enter Prescribed Medication</string>
     <string name="filter_regimen_query">Filter Regimen Query</string>
+    <string name="title_activity_input_and_query">InputAndQuery</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_input_query">InputQuery</string>
 </resources>

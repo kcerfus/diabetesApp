@@ -6,46 +6,37 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.MedicationFilter">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/filter_medication_query"
-        android:id="@+id/textViewFilterMedicationHeader"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageViewMedication"
-        android:layout_below="@+id/textViewFilterMedicationHeader"
+        android:id="@+id/imageViewDietImage"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/medication_image" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextMedication"
-        android:layout_below="@+id/imageViewMedication"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="@string/enter_medication"
-        android:layout_alignRight="@+id/imageViewMedication"
-        android:layout_alignEnd="@+id/imageViewMedication" />
+        android:src="@drawable/diet_image"
+        android:contentDescription="@string/diet_image" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/exact_match"
         android:id="@+id/checkBoxExactMatch"
-        android:layout_below="@+id/imageViewMedication"
+        android:checked="false"
+        android:layout_below="@+id/imageViewDietImage"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:checked="false" />
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextFoodType"
+        android:hint="@string/enter_diet"
+        android:layout_alignBaseline="@+id/checkBoxExactMatch"
+        android:layout_alignBottom="@+id/checkBoxExactMatch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/checkBoxExactMatch"
+        android:layout_toStartOf="@+id/checkBoxExactMatch" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,13 +44,12 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editTextStartDate"
-        android:layout_below="@+id/editTextMedication"
+        android:layout_below="@+id/editTextFoodType"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/checkBoxExactMatch"
         android:hint="@string/start_date"
-        android:layout_alignRight="@+id/editTextMedication"
-        android:layout_alignEnd="@+id/editTextMedication" />
+        android:layout_alignRight="@+id/editTextFoodType"
+        android:layout_alignEnd="@+id/editTextFoodType" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -70,9 +60,9 @@
         android:layout_below="@+id/editTextStartDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editTextMedication"
-        android:layout_alignEnd="@+id/editTextMedication"
-        android:hint="@string/end_date" />
+        android:hint="@string/end_date"
+        android:layout_alignRight="@+id/editTextStartDate"
+        android:layout_alignEnd="@+id/editTextStartDate" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -106,6 +96,7 @@
         android:text="@android:string/search_go"
         android:id="@+id/buttonSearch"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/checkBoxExactMatch"
+        android:layout_alignEnd="@+id/checkBoxExactMatch" />
+
 </RelativeLayout>

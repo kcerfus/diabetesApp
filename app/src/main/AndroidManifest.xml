@@ -15,27 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GraphSelection" />
         <activity
-            android:name=".GraphDisplay"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_graph_display"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".TableDisplay"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_table_display"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".BGLInput" />
-        <activity android:name=".DietInput" />
-        <activity android:name=".ExerciseInput" />
-        <activity android:name=".MedicationInput" />
-        <activity android:name=".RegimenInput" />
-        <activity android:name=".BGLFilter" />
-        <activity android:name=".DietFilter" />
-        <activity android:name=".ExerciseFilter" />
-        <activity android:name=".MedicationFilter" />
-        <activity android:name=".RegimenFilter"></activity>
+            android:name=".InputQuery"
+            android:label="@string/title_activity_input_query"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

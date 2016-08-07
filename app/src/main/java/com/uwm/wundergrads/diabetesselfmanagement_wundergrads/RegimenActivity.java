@@ -16,21 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
 import layout.BGLInput;
-import layout.BGLQuery;
-import layout.DietInput;
-import layout.DietQuery;
-import layout.ExerciseInput;
-import layout.ExerciseQuery;
-import layout.MedicationInput;
-import layout.MedicationQuery;
+import layout.RegimenInput;
 
-public class RegimenActivity extends AppCompatActivity implements BGLInput.OnFragmentInteractionListener, BGLQuery.OnFragmentInteractionListener, DietInput.OnFragmentInteractionListener,
-        DietQuery.OnFragmentInteractionListener, ExerciseInput.OnFragmentInteractionListener, ExerciseQuery.OnFragmentInteractionListener, MedicationInput.OnFragmentInteractionListener,
-        MedicationQuery.OnFragmentInteractionListener {
+public class RegimenActivity extends AppCompatActivity implements RegimenInput.OnFragmentInteractionListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -140,25 +131,7 @@ public class RegimenActivity extends AppCompatActivity implements BGLInput.OnFra
 
         @Override
         public Fragment getItem(int position) {
-            switch(position){
-                case 0:
-                    switch(mode){
-                        case "BGL": return BGLInput.newInstance("","");
-                        case "Diet": return DietInput.newInstance("", "");
-                        case "Exercise" : return ExerciseInput.newInstance("","");
-                        case "Medication" : return MedicationInput.newInstance("","");
-                        default: return null;
-                    }
-                case 1:
-                    switch(mode){
-                        case "BGL": return BGLQuery.newInstance("","");
-                        case "Diet": return DietQuery.newInstance("", "");
-                        case "Exercise" : return ExerciseQuery.newInstance("","");
-                        case "Medication" : return MedicationQuery.newInstance("","");
-                        default: return null;
-                    }
-                default: return null;
-            }
+          return BGLInput.newInstance("","");
         }
 
         @Override

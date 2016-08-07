@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Regimen_button = (Button) findViewById(R.id.reg_button);
         Regimen_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), InputQuery.class);
-                intent.putExtra("mode", "BGL");
+                Intent intent = new Intent(getApplicationContext(), RegimenActivity.class);
+                intent.putExtra("mode", "Regimen");
                 startActivity(intent);
             }
         });

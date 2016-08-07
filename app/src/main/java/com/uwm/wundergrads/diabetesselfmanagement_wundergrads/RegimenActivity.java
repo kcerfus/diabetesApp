@@ -1,11 +1,8 @@
 package com.uwm.wundergrads.diabetesselfmanagement_wundergrads;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -31,10 +28,9 @@ import layout.ExerciseQuery;
 import layout.MedicationInput;
 import layout.MedicationQuery;
 
-public class InputQuery extends AppCompatActivity implements BGLInput.OnFragmentInteractionListener, BGLQuery.OnFragmentInteractionListener, DietInput.OnFragmentInteractionListener,
-    DietQuery.OnFragmentInteractionListener, ExerciseInput.OnFragmentInteractionListener, ExerciseQuery.OnFragmentInteractionListener, MedicationInput.OnFragmentInteractionListener,
-    MedicationQuery.OnFragmentInteractionListener
-    {
+public class RegimenActivity extends AppCompatActivity implements BGLInput.OnFragmentInteractionListener, BGLQuery.OnFragmentInteractionListener, DietInput.OnFragmentInteractionListener,
+        DietQuery.OnFragmentInteractionListener, ExerciseInput.OnFragmentInteractionListener, ExerciseQuery.OnFragmentInteractionListener, MedicationInput.OnFragmentInteractionListener,
+        MedicationQuery.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -54,15 +50,11 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input_query);
-        Intent intent = getIntent();
-        mode = intent.getStringExtra("mode");
+        setContentView(R.layout.activity_regimen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -71,15 +63,23 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_input_query, menu);
+        getMenuInflater().inflate(R.menu.menu_regimen, menu);
         return true;
     }
 
@@ -131,7 +131,7 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_input_query, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_regimen, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -174,7 +174,7 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -183,7 +183,7 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
                 case 0:
                     return mode + " Input";
                 case 1:
-                    return mode + " Query";
+                    return mode + " Regimen";
             }
             return null;
         }

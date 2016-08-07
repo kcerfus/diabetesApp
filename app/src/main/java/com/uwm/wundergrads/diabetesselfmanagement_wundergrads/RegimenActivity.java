@@ -183,7 +183,7 @@ public class RegimenActivity extends AppCompatActivity implements BGLInput.OnFra
                 case 0:
                     return mode + " Input";
                 case 1:
-                    return mode + " Regimen";
+                    return mode + " Table";
             }
             return null;
         }

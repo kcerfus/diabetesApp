@@ -1,13 +1,17 @@
 package layout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.GraphTableStats;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 
 /**
@@ -29,6 +33,9 @@ public class MedicationQuery extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Button search;
+    private EditText value, startDate, endDate, startTime, endTime;
 
     public MedicationQuery() {
         // Required empty public constructor
@@ -65,14 +72,28 @@ public class MedicationQuery extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_medication_query, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_medication_query, container, false);
+        value = (EditText) view.findViewById(R.id.editTextMedication);
+        startDate = (EditText) view.findViewById(R.id.editTextStartDate);
+        endDate = (EditText) view.findViewById(R.id.editTextEndDate);
+        startTime = (EditText) view.findViewById(R.id.editTextEarliestTime);
+        endTime = (EditText) view.findViewById(R.id.editTextLatestTime);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        search = (Button) view.findViewById(R.id.buttonSearch);
+        search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Intent intent = new Intent(getContext(), GraphTableStats.class );
+                intent.putExtra("mode", "Medication");
+                intent.putExtra("value", value.getText());
+                intent.putExtra("startDate", startDate.getText());
+                intent.putExtra("endDate", endDate.getText());
+                intent.putExtra("startTime", startTime.getText());
+                intent.putExtra("endTime", endTime.getText());
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
     @Override

@@ -1,13 +1,17 @@
 package layout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.GraphTableStats;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 
 /**
@@ -29,6 +33,9 @@ public class BGLQuery extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Button search;
+    private EditText maxBGL, minBGL, startDate, endDate, startTime, endTime;
 
     public BGLQuery() {
         // Required empty public constructor
@@ -59,20 +66,37 @@ public class BGLQuery extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bglquery, container, false);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_bglquery, container, false);
+        maxBGL = (EditText) view.findViewById(R.id.editTextMaxBGL);
+        minBGL = (EditText) view.findViewById(R.id.editTextMinBGL);
+        startDate = (EditText) view.findViewById(R.id.editTextStartDate);
+        endDate = (EditText) view.findViewById(R.id.editTextEndDate);
+        startTime = (EditText) view.findViewById(R.id.editTextEarlyTime);
+        endTime = (EditText) view.findViewById(R.id.editTextLateTime);
+
+        search = (Button) view.findViewById(R.id.buttonSearch);
+        search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Intent intent = new Intent(getContext(), GraphTableStats.class );
+                intent.putExtra("mode", "BGL");
+                intent.putExtra("value", minBGL.getText() + " - " + maxBGL.getText());
+                intent.putExtra("startDate", startDate.getText());
+                intent.putExtra("endDate", endDate.getText());
+                intent.putExtra("startTime", startTime.getText());
+                intent.putExtra("endTime", endTime.getText());
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
     @Override

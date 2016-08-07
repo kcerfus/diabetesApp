@@ -25,6 +25,15 @@
                 android:value="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.MainActivity" />
         </activity>
         <activity
+            android:name=".GraphTableStats"
+            android:label="@string/title_activity_input_query"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.uwm.wundergrads.diabetesselfmanagement_wundergrads.InputQuery" />
+        </activity>
+        <activity
             android:name=".RegimenActivity"
             android:label="@string/title_activity_regimen"
             android:parentActivityName=".MainActivity"

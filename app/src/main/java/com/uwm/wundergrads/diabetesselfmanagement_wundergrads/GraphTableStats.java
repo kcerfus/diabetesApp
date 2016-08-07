@@ -26,7 +26,8 @@ import layout.GraphFragment;
 import layout.TableFragment;
 import layout.StatsFragment;
 
-public class GraphTableStats extends AppCompatActivity implements GraphFragment.OnFragmentInteractionListener
+public class GraphTableStats extends AppCompatActivity implements GraphFragment.OnFragmentInteractionListener, TableFragment.OnFragmentInteractionListener,
+        StatsFragment.OnFragmentInteractionListener
 {
 
     /**

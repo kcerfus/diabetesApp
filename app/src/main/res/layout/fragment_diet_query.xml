@@ -95,8 +95,7 @@
         android:layout_height="wrap_content"
         android:text="@android:string/search_go"
         android:id="@+id/buttonSearch"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/checkBoxExactMatch"
-        android:layout_alignEnd="@+id/checkBoxExactMatch" />
+        android:layout_below="@+id/editTextLatestTime"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

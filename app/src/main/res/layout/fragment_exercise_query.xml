@@ -88,4 +88,12 @@
         android:layout_alignRight="@+id/editTextEndDate"
         android:layout_alignEnd="@+id/editTextEndDate"
         android:hint="@string/latest_time" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@android:string/search_go"
+        android:id="@+id/button"
+        android:layout_below="@+id/editTextLatestTime"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

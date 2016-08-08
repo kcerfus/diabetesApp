@@ -53,6 +53,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_input_query">InputQuery</string>
+    <string name="title_activity_graph_table_stats">GraphTableStats</string>
     <string name="title_activity_regimen">RegimenActivity</string>
     <string name="title_activity_statistics">Statistics</string>
     <string name="enter_date">Enter Date</string>

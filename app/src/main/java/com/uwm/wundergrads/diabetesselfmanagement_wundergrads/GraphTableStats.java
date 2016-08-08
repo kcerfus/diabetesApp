@@ -51,6 +51,7 @@ public class GraphTableStats extends AppCompatActivity implements GraphFragment.
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_table_stats);
+        setTitle(R.string.title_activity_graph_table_stats);
 
         Intent intent = getIntent();
         mode = intent.getStringExtra("mode");
@@ -62,7 +63,9 @@ public class GraphTableStats extends AppCompatActivity implements GraphFragment.
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

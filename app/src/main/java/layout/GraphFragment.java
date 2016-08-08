@@ -7,8 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.github.mikephil.charting.charts.*;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GraphFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -34,11 +46,11 @@ public class GraphFragment extends Fragment {
         GraphFragment fragment = new GraphFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM1, param2);
-        args.putString(ARG_PARAM1, param3);
-        args.putString(ARG_PARAM1, param4);
-        args.putString(ARG_PARAM1, param5);
-        args.putString(ARG_PARAM1, param6);
+        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
+        args.putString(ARG_PARAM5, param5);
+        args.putString(ARG_PARAM6, param6);
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,20 +60,26 @@ public class GraphFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mode = getArguments().getString(ARG_PARAM1);
-            value= getArguments().getString(ARG_PARAM2);
+            value = getArguments().getString(ARG_PARAM2);
             startDate = getArguments().getString(ARG_PARAM3);
             endDate = getArguments().getString(ARG_PARAM4);
             startTime = getArguments().getString(ARG_PARAM5);
             endTime = getArguments().getString(ARG_PARAM6);
         }
-        loadGraph();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph, container, false);
+        View view = inflater.inflate(R.layout.fragment_graph, container, false);
+        switch (mode){
+            case "BGL": loadBGLGraph(view);
+            case "Diet": loadDietGraph(view);
+            case "Exercise": loadExerciseGraph(view);
+            case "Medication": loadMedicationGraph(view);
+        }
+        return view;
     }
 
     @Override
@@ -86,7 +104,72 @@ public class GraphFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void loadGraph(){
+    public void loadBGLGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
+
+        // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        LineChart chart = new LineChart(getContext());
+        LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
+        chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(chart);
+        List<Entry> entries = new ArrayList<Entry>();
+        entries.add(new Entry(0, 0));
+        entries.add(new Entry(1, 3));
+        entries.add(new Entry(2, 6));
+        entries.add(new Entry(3, 2));
+        entries.add(new Entry(4, 4));
+        chart.setData(new LineData(new LineDataSet(entries, "Placeholder Graph")));
+        chart.invalidate();
+    }
+
+    public void loadDietGraph(View v){
+        // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
+        // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        BarChart chart = new BarChart(getContext());
+        LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
+        chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(chart);
+        List<BarEntry> entries = new ArrayList<BarEntry>();
+        entries.add(new BarEntry(0, 0));
+        entries.add(new BarEntry(1, 3));
+        entries.add(new BarEntry(2, 6));
+        entries.add(new BarEntry(3, 2));
+        entries.add(new BarEntry(4, 4));
+        chart.setData(new BarData(new BarDataSet(entries, "Placeholder Graph")));
+        chart.invalidate();
+    }
+
+    public void loadExerciseGraph(View v){
+        // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
+        // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        BarChart chart = new BarChart(getContext());
+        LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
+        chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(chart);
+        List<BarEntry> entries = new ArrayList<BarEntry>();
+        entries.add(new BarEntry(0, 0));
+        entries.add(new BarEntry(1, 3));
+        entries.add(new BarEntry(2, 6));
+        entries.add(new BarEntry(3, 2));
+        entries.add(new BarEntry(4, 4));
+        chart.setData(new BarData(new BarDataSet(entries, "Placeholder Graph")));
+        chart.invalidate();
+    }
+
+    public void loadMedicationGraph(View v){
+        // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
+        // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        LineChart chart = new LineChart(getContext());
+        LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
+        chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(chart);
+        List<Entry> entries = new ArrayList<Entry>();
+        entries.add(new Entry(0, 0));
+        entries.add(new Entry(1, 3));
+        entries.add(new Entry(2, 6));
+        entries.add(new Entry(3, 2));
+        entries.add(new Entry(4, 4));
+        chart.setData(new LineData(new LineDataSet(entries, "Placeholder Graph")));
+        chart.invalidate();
     }
 }

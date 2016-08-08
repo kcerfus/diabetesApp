@@ -34,11 +34,11 @@ public class StatsFragment extends Fragment {
         StatsFragment fragment = new StatsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM1, param2);
-        args.putString(ARG_PARAM1, param3);
-        args.putString(ARG_PARAM1, param4);
-        args.putString(ARG_PARAM1, param5);
-        args.putString(ARG_PARAM1, param6);
+        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
+        args.putString(ARG_PARAM5, param5);
+        args.putString(ARG_PARAM6, param6);
         fragment.setArguments(args);
         return fragment;
     }

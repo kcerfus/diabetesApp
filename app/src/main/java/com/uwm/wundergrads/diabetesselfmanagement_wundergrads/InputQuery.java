@@ -63,7 +63,9 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

@@ -151,7 +151,7 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
                 case 0: //title of first tab
                     return mode + " Input";
                 case 1: //title of second tab
-                    return mode + " Table";
+                    return mode + " Query";
             }
             return null;
         }

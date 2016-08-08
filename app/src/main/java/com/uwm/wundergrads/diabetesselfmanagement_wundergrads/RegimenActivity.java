@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -30,12 +31,14 @@ import layout.DietInput;
 import layout.ExerciseInput;
 import layout.MedicationInput;
 import layout.RegimenInput;
+import layout.RegimenTable;
 import layout.TableFragment;
 
 import static com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R.id.container;
 import static com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R.id.reg_container;
 
-public class RegimenActivity extends AppCompatActivity implements RegimenInput.OnFragmentInteractionListener {
+public class RegimenActivity extends AppCompatActivity implements RegimenInput.OnFragmentInteractionListener, RegimenTable.OnFragmentInteractionListener
+{
 
     /**
      * The {@link PagerAdapter} that will provide
@@ -52,33 +55,28 @@ public class RegimenActivity extends AppCompatActivity implements RegimenInput.O
      */
     private ViewPager mViewPager;
     private String mode;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regimen);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         mode = intent.getStringExtra("mode");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(reg_container);
+        mViewPager = (ViewPager) findViewById(R.id.reg_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
     }
 
 
@@ -107,46 +105,6 @@ public class RegimenActivity extends AppCompatActivity implements RegimenInput.O
     @Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Regimen Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.uwm.wundergrads.diabetesselfmanagement_wundergrads/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Regimen Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.uwm.wundergrads.diabetesselfmanagement_wundergrads/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
     /**
@@ -196,7 +154,11 @@ public class RegimenActivity extends AppCompatActivity implements RegimenInput.O
 
         @Override
         public Fragment getItem(int position) {
-            return RegimenInput.newInstance("","");
+            switch (position){
+                case 0: return RegimenInput.newInstance("", "");
+                case 1: return RegimenTable.newInstance("","");
+                default: return null;
+            }
         }
 
         @Override

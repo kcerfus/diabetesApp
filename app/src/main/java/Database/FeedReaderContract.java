@@ -42,6 +42,7 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + BloodGlucoseMeasurement.TABLE_NAME;
 
+        // Need to implement constructor when extending SQLiteOpenHelper
         public BloodGlucoseMeasurement(Context context) {
             super(context, dbName, null, 1);
         }
@@ -90,6 +91,7 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Diet.TABLE_NAME;
 
+        // Need to implement constructor when extending SQLiteOpenHelper
         public Diet(Context context) {
             super(context, dbName, null, 1);
         }
@@ -138,6 +140,7 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Exercise.TABLE_NAME;
 
+        // Need to implement constructor when extending SQLiteOpenHelper
         public Exercise(Context context) {
             super(context, dbName, null, 1);
         }
@@ -186,6 +189,7 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Medication.TABLE_NAME;
 
+        // Need to implement constructor when extending SQLiteOpenHelper
         public Medication(Context context) {
             super(context, dbName, null, 1);
         }
@@ -236,6 +240,7 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Regimen.TABLE_NAME;
 
+        // Need to implement constructor when extending SQLiteOpenHelper
         public Regimen(Context context) {
             super(context, dbName, null, 1);
         }

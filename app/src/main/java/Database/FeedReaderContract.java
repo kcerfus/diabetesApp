@@ -1,9 +1,10 @@
 package Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 
 /**
  * Created by kcerfus on 8/10/2016.
@@ -19,8 +20,11 @@ public final class FeedReaderContract {
     private static final String REAL = "REAL";
     private static final String UNIQUE = "UNIQUE";
 
+    private static String dbName = "FeedReaderContract.db";
+    private static SQLiteDatabase db;
+
     // Here we need a class for each table(5 tables total)
-    public static abstract class BloodGlucoseMeasurement implements BaseColumns {
+    public static abstract class BloodGlucoseMeasurement extends SQLiteOpenHelper implements BaseColumns {
         // Define title and column names
         public static final String TABLE_NAME = "BloodGlucoseMeasurement";
         public static final String ID = "ID";
@@ -38,27 +42,37 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + BloodGlucoseMeasurement.TABLE_NAME;
 
-        // Have an inner class extending SQLiteOpenHelper to help with long running operations
-        private class FeedReaderDbHelper extends SQLiteOpenHelper {
+        public BloodGlucoseMeasurement(Context context) {
+            super(context, dbName, null, 1);
+        }
 
-            public FeedReaderDbHelper(Context context){
-                super(context, "database.db", null, 1);
-            }
-            // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 1;
-            public static final String DATABASE_NAME = "FeedReader.db";
+        // If you change the database schema, you must increment the database version. Should use in Upgrade
+        public static final int DATABASE_VERSION = 1;
 
-            // Will populate our database with columns
-            @Override
-            public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
+        // Will populate our database with columns
+        @Override
+        public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
 
-            // Need to implement it, but we wont be changing database so its unnecessary
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        // Need to implement it, but we wont be changing database so its unnecessary
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+
+        // method to add values to new row in table
+        private boolean insert(int id, int bgl, String time) {
+            db = super.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(ID,id);
+            values.put(BGL,bgl);
+            values.put(TIME,time);
+
+            long addedToTable = db.insert(TABLE_NAME,null,values);
+            //If addedToTable is -1, nothing was added
+            return addedToTable != -1;
         }
     }
 
-    public static abstract class Diet implements BaseColumns {
+    public static abstract class Diet extends SQLiteOpenHelper implements BaseColumns {
         // Define title and column names
         public static final String TABLE_NAME = "DIET";
         public static final String ID = "ID";
@@ -76,26 +90,38 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Diet.TABLE_NAME;
 
-        // Have an inner class extending SQLiteOpenHelper to help with long running operations
-        private class FeedReaderDbHelper extends SQLiteOpenHelper {
+        public Diet(Context context) {
+            super(context, dbName, null, 1);
+        }
 
-            public FeedReaderDbHelper(Context context){
-                super(context, "database.db", null, 1);
-            }
-                // If you change the database schema, you must increment the database version.
-                public static final int DATABASE_VERSION = 1;
-                public static final String DATABASE_NAME = "FeedReader.db";
+        // If you change the database schema, you must increment the database version.
+        public static final int DATABASE_VERSION = 1;
 
-                @Override
-                public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
+        // Will populate our database with columns
+        @Override
+        public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
 
-            // Need to implement it, but we wont be changing database so its unnecessary
-                @Override
-                public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        // Need to implement it, but we wont be changing database so its unnecessary
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+
+        // method to add values to new row in table
+        private boolean insert(int id, String name, String time, int calories) {
+            db = super.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(ID,id);
+            values.put(NAME,name);
+            values.put(TIME,time);
+            values.put(CALORIES,calories);
+
+            long addedToTable = db.insert(TABLE_NAME,null,values);
+            //If addedToTable is -1, nothing was added
+            return addedToTable != -1;
         }
     }
 
-    public static abstract class Exercise implements BaseColumns {
+    public static abstract class Exercise extends SQLiteOpenHelper implements BaseColumns {
         public static final String TABLE_NAME = "EXERCISE";
         public static final String ID = "ID";
         public static final String NAME = "Name";
@@ -112,26 +138,38 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Exercise.TABLE_NAME;
 
-        // Have an inner class extending SQLiteOpenHelper to help with long running operations
-        private class FeedReaderDbHelper extends SQLiteOpenHelper {
+        public Exercise(Context context) {
+            super(context, dbName, null, 1);
+        }
 
-            public FeedReaderDbHelper(Context context){
-                super(context, "database.db", null, 1);
-            }
-            // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 1;
-            public static final String DATABASE_NAME = "FeedReader.db";
+        // If you change the database schema, you must increment the database version.
+        public static final int DATABASE_VERSION = 1;
 
-            @Override
-            public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
+        // Will populate our database with columns
+        @Override
+        public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
 
-            // Need to implement it, but we wont be changing database so its unnecessary
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        // Need to implement it, but we wont be changing database so its unnecessary
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+
+        // method to add values to new row in table
+        private boolean insert(int id, String name, String time, int calories) {
+            db = super.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(ID,id);
+            values.put(NAME,name);
+            values.put(TIME,time);
+            values.put(CALORIES,calories);
+
+            long addedToTable = db.insert(TABLE_NAME,null,values);
+            //If addedToTable is -1, nothing was added
+            return addedToTable != -1;
         }
     }
 
-    public static abstract class Medication implements BaseColumns {
+    public static abstract class Medication extends SQLiteOpenHelper implements BaseColumns {
         public static final String TABLE_NAME = "MEDICATION";
         public static final String ID = "ID";
         public static final String NAME = "Name";
@@ -148,26 +186,38 @@ public final class FeedReaderContract {
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Medication.TABLE_NAME;
 
-        // Have an inner class extending SQLiteOpenHelper to help with long running operations
-        private class FeedReaderDbHelper extends SQLiteOpenHelper {
+        public Medication(Context context) {
+            super(context, dbName, null, 1);
+        }
 
-            public FeedReaderDbHelper(Context context){
-                super(context, "database.db", null, 1);
-            }
-            // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 1;
-            public static final String DATABASE_NAME = "FeedReader.db";
+        // If you change the database schema, you must increment the database version.
+        public static final int DATABASE_VERSION = 1;
 
-            @Override
-            public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
+        // Will populate our database with columns
+        @Override
+        public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
 
-            // Need to implement it, but we wont be changing database so its unnecessary
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        // Need to implement it, but we wont be changing database so its unnecessary
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+
+        // method to add values to new row in table
+        private boolean insert(int id, String name, String time, int dose) {
+            db = super.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(ID,id);
+            values.put(NAME,name);
+            values.put(TIME,time);
+            values.put(DOSE,dose);
+
+            long addedToTable = db.insert(TABLE_NAME,null,values);
+            //If addedToTable is -1, nothing was added
+            return addedToTable != -1;
         }
     }
 
-    public static abstract class Regimen implements BaseColumns {
+    public static abstract class Regimen extends SQLiteOpenHelper implements BaseColumns {
         public static final String TABLE_NAME = "REGIMEN";
         public static final String ID = "ID";
         public static final String DIET_NAME = "DietName";
@@ -180,28 +230,44 @@ public final class FeedReaderContract {
                         Regimen.ID + " INTEGER PRIMARY KEY" + AUTOINCREMENT + NOT_NULL + UNIQUE + COMMA_SEP +
                         Regimen.DIET_NAME + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                         Regimen.EXERCISE_NAME + TEXT_TYPE + NOT_NULL + COMMA_SEP +
-                        Regimen.MEDICATION_NAME + TEXT_TYPE +  NOT_NULL + COMMA_SEP +
+                        Regimen.MEDICATION_NAME + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                         Regimen.TIME + TEXT_TYPE + NOT_NULL + UNIQUE + ")";
 
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Regimen.TABLE_NAME;
 
-        // Have an inner class extending SQLiteOpenHelper to help with long running operations
-        private class FeedReaderDbHelper extends SQLiteOpenHelper {
+        public Regimen(Context context) {
+            super(context, dbName, null, 1);
+        }
 
-            public FeedReaderDbHelper(Context context){
-                super(context, "database.db", null, 1);
-            }
-            // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 1;
-            public static final String DATABASE_NAME = "FeedReader.db";
+        // If you change the database schema, you must increment the database version.
+        public static final int DATABASE_VERSION = 1;
 
-            @Override
-            public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
+        // Will populate our database with columns
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL(SQL_CREATE_ENTRIES);
+        }
 
-            // Need to implement it, but we wont be changing database so its unnecessary
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        // Need to implement it, but we wont be changing database so its unnecessary
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {
+        }
+
+        // method to add values to new row in table
+        private boolean insert(int id, String dietName, String exerciseName, String medicationName, String time) {
+            db = super.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(ID, id);
+            values.put(DIET_NAME, dietName);
+            values.put(EXERCISE_NAME, exerciseName);
+            values.put(MEDICATION_NAME, medicationName);
+            values.put(TIME,time);
+
+            long addedToTable = db.insert(TABLE_NAME, null, values);
+            //If addedToTable is -1, nothing was added
+            return addedToTable != -1;
         }
     }
 }

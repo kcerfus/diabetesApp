@@ -12,6 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
 
 import layout.BGLInput;
 import layout.BGLQuery;
@@ -42,6 +46,7 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
      */
     private ViewPager mViewPager;
     private String mode;
+    private Button dietButton, exerciseButton, medButton, bglButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,49 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        setButtons();
+    }
+
+    public void setButtons() {
+        // Trying to remove clutter from onCreate, all categories will have a submit button which are what these buttons are
+        // NOTE: These buttons are ONLY for the input so far, no Query yet
+        dietButton = (Button) findViewById(R.id.ButtonSubmitDiet);
+        medButton = (Button) findViewById(R.id.ButtonSubmitMedication);
+        exerciseButton = (Button) findViewById(R.id.ButtonSubmitExercise);
+        bglButton = (Button) findViewById(R.id.ButtonSubmitBGL);
+
+        ArrayList<Button> buttons = new ArrayList<Button>();
+        buttons.add(dietButton);
+        buttons.add(medButton);
+        buttons.add(exerciseButton);
+        buttons.add(bglButton);
+
+        // Create a listener for each button
+        for(Button button : buttons){
+            button.setOnClickListener((new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Get the values from text fields to pass to database
+
+                    // need to instantiate a FeedReaderContract object here and do a switch statement based on button id
+                    switch(v.getId()){
+                        case R.id.ButtonSubmitBGL:
+                            // send BGL inputs textField Values to database using BloodGlucoseMeasurements tables insert method in FeedReaderContract
+                        case R.id.ButtonSubmitDiet:
+                            // send Diet inputs textField Values to database using Diet tables insert method in FeedReaderContract
+                        case R.id.ButtonSubmitExercise:
+                            // send Exercise inputs textField Values to database using Exercise tables insert method in FeedReaderContract
+                        case R.id.ButtonSubmitMedication:
+                            // send Medication inputs textField Values to database using Exercise tables insert method in FeedReaderContract
+                    }
+                   /* long id;
+                    int calories = Integer.parseInt(findViewById(R.id.EditTextDietInput).toString());
+                    String food = findViewById(R.id.EditFoodInput).toString();
+                    String date = findViewById(R.id.EditTextDate).toString();
+                    String time = findViewById(R.id.EditTextTime).toString();*/
+                }
+            }));
+        }
     }
 
 

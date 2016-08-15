@@ -36,6 +36,8 @@
     <string name="medication_image">Medication Image</string>
     <string name="regimen_image">Regimen Image</string>
     <string name="enter_diet">Enter Diet</string>
+    <string name="enter_calories">Enter Calories</string>
+    <string name="enter_food_name">Enter Food</string>
     <string name="filter_exercise_query">Filter Exercise Query</string>
     <string name="enter_exercise">Enter Exercise</string>
     <string name="filter_medication_query">Filter Medication Query</string>

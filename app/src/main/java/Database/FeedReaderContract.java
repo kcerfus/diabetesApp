@@ -71,6 +71,10 @@ public final class FeedReaderContract {
             //If addedToTable is -1, nothing was added
             return addedToTable != -1;
         }
+
+       /* private Cursor query(boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+
+        } */
     }
 
     public static abstract class Diet extends SQLiteOpenHelper implements BaseColumns {
@@ -108,7 +112,7 @@ public final class FeedReaderContract {
         public void onUpgrade(SQLiteDatabase db, int a, int b) {}
 
         // method to add values to new row in table
-        private boolean insert(int id, String name, String time, int calories) {
+        public boolean insert(long id, String name, String time, int calories) {
             db = super.getWritableDatabase();
             ContentValues values = new ContentValues();
 

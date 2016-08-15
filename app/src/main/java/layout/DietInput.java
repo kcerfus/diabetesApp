@@ -1,14 +1,20 @@
 package layout;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import java.util.Calendar;
+
+import Database.FeedReaderContract;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +65,36 @@ public class DietInput extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        final Button submitButton = (Button) getActivity().findViewById(R.id.ButtonSubmitDiet);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Get the values from text fields to pass to database
+                long id = Calendar.getInstance().getTimeInMillis();
+                int calories = Integer.parseInt(getActivity().findViewById(R.id.EditTextDietInput).toString());
+                String food = getActivity().findViewById(R.id.EditFoodInput).toString();
+                String date = getActivity().findViewById(R.id.EditTextDate).toString();
+                String time = getActivity().findViewById(R.id.EditTextTime).toString();
+
+                // need to instantiate a FeedReaderContract.Diet object here
+                FeedReaderContract.Diet diet = new FeedReaderContract.Diet(getActivity()) {
+                    @Override
+                    public void onCreate(SQLiteDatabase db) {
+                        super.onCreate(db);
+                    }
+
+                    @Override
+                    public void onUpgrade(SQLiteDatabase db, int a, int b) {
+                        super.onUpgrade(db, a, b);
+                    }
+
+                    @Override
+                    public boolean insert(long id, String name, String time, int calories) {
+                        return super.insert(id, name, time, calories);
+                    }
+                };
+                diet.insert(id,food,time,calories);
+            }
+        });
     }
 
     @Override

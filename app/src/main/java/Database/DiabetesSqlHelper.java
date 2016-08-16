@@ -2,6 +2,7 @@ package Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -18,6 +19,8 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
     private static final String NOT_NULL = " NOT NULL ";
     private static final String REAL = " REAL ";
     private static final String UNIQUE = " UNIQUE ";
+    private static final String AND = " AND ";
+    private static final String BETWEEN = " BETWEEN ";
 
     private static String dbName = "Diabetes.db";
     private static SQLiteDatabase db;
@@ -59,9 +62,48 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
         //If addedToTable is -1, nothing was added
         return addedToTable != -1;
     }
-       /* private Cursor queryBgl(boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+        public Cursor queryBgl(String maxBgl, String minBgl, String startDate, String endDate, String earliestTime, String latestTime) {
+            db = super.getReadableDatabase();
+            String query = "SELECT * FROM " + BloodGlucoseMeasurement.TABLE_NAME + " WHERE ";
+            query+=getBglMaxMinString(minBgl,maxBgl) + AND + getDateString(startDate,endDate,BloodGlucoseMeasurement.DATE) + AND + getTimeString(earliestTime,latestTime,BloodGlucoseMeasurement.TIME);
+            Cursor c = db.rawQuery(query,null);
+            return c;
+        }
 
-        } */
+        private String getBglMaxMinString(String bglMin, String bglMax) {
+            String result = "";
+            if(!(bglMin.equals("") || bglMax.equals("")))
+                result = BloodGlucoseMeasurement.BGL + BETWEEN + bglMin + AND + bglMax;
+            else if(bglMin.equals("") && !(bglMax.equals("")))
+                result = BloodGlucoseMeasurement.BGL + " < " + bglMax;
+            else if(!(bglMin.equals("") && bglMax.equals("")))
+                result = BloodGlucoseMeasurement.BGL + " > " + bglMin;
+            return result;
+        }
+
+        // UNIVERSAL WILL WORK WITH ANY TABLE
+        private String getDateString(String startDate, String endDate, String colName) {
+            String result = "";
+            if(!(startDate.equals("") || endDate.equals("")))
+                result = colName + BETWEEN + startDate + AND + endDate;
+            else if(startDate.equals("") && !(endDate.equals("")))
+                result = colName + " < " + endDate;
+            else if(!(startDate.equals("") && endDate.equals("")))
+                result = colName + " > " + startDate;
+            return result;
+        }
+
+        // UNIVERSAL WILL WORK WITH ANY TABLE
+        private String getTimeString(String startTime, String endTime, String colName){
+            String result = "";
+            if(!(startTime.equals("") || endTime.equals("")))
+                result = colName + BETWEEN + startTime + AND + endTime;
+            else if(startTime.equals("") && !(endTime.equals("")))
+                result = colName + " < " + endTime;
+            else if(!(startTime.equals("") && endTime.equals("")))
+                result = colName + " > " + startTime;
+            return result;
+        }
 
         public boolean insertDiet(String name, String date, String time) {
             db = super.getWritableDatabase();

@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import Database.DiabetesSqlHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +32,13 @@ public class MedicationInput extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private EditText medInput;
+    private EditText date;
+    private EditText time;
+    private Button submit;
+    private DiabetesSqlHelper db;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +76,30 @@ public class MedicationInput extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_medication_input, container, false);
+        View view = inflater.inflate(R.layout.fragment_medication_input, container, false);
+        db = new DiabetesSqlHelper(getActivity());
+        medInput = (EditText) view.findViewById(R.id.EditTextMedicationInput);
+        date = (EditText) view.findViewById(R.id.EditTextDate);
+        time = (EditText) view.findViewById(R.id.EditTextTime);
+        submit = (Button) view.findViewById(R.id.ButtonSubmitMedication);
+        submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if (medInput.getText().toString().equals("") || date.getText().toString().equals("") || time.getText().toString().equals("")) {
+                    Toast toaster = Toast.makeText(getActivity(), "Enter values for all fields", Toast.LENGTH_LONG);
+                    toaster.show();
+                }
+                else{
+                    db.insertMedication(medInput.getText().toString(), date.getText().toString(), time.getText().toString());
+                    medInput.getText().clear();
+                    date.getText().clear();
+                    time.getText().clear();
+                    Toast toast = Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT);
+                    toast.show();
+                    medInput.requestFocus();
+                }
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

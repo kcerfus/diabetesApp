@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 
@@ -37,7 +38,7 @@ public class BGLInput extends Fragment {
     private EditText date;
     private EditText time;
     private Button submit;
-    private DiabetesSqlHelper dbHelper;
+    private DiabetesSqlHelper db;
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,17 +77,28 @@ public class BGLInput extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_bglinput, container, false);
-        dbHelper = new DiabetesSqlHelper(getActivity());
+        db = new DiabetesSqlHelper(getActivity());
         bglInput = (EditText) view.findViewById(R.id.EditTextBGLInput);
         date = (EditText) view.findViewById(R.id.EditTextDate);
         time = (EditText) view.findViewById(R.id.EditTextTime);
         submit = (Button) view.findViewById(R.id.ButtonSubmitBGL);
         submit.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                if(!bglInput.getText().toString().equals("") && !date.getText().toString().equals("") && !time.getText().toString().equals(""))
-                    dbHelper.insertBgl(Integer.parseInt(bglInput.getText().toString()), date.getText().toString(), time.getText().toString());
+            public void onClick(View v) {
+                if (bglInput.getText().toString().equals("") || date.getText().toString().equals("") || time.getText().toString().equals("")) {
+                    Toast toaster = Toast.makeText(getActivity(), "Enter values for all fields", Toast.LENGTH_LONG);
+                    toaster.show();
+                }
+                else{
+                    db.insertBgl(Integer.parseInt(bglInput.getText().toString()), date.getText().toString(), time.getText().toString());
+                    bglInput.getText().clear();
+                    date.getText().clear();
+                    time.getText().clear();
+                    Toast toast = Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT);
+                    toast.show();
+                    bglInput.requestFocus();
+                }
             }
         });
         return view;

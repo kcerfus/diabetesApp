@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import Database.DiabetesSqlHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +34,12 @@ public class ExerciseInput extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private EditText exerciseInput;
+    private EditText date;
+    private EditText time;
+    private Button submit;
+    private DiabetesSqlHelper db;
 
     public ExerciseInput() {
         // Required empty public constructor
@@ -64,8 +75,30 @@ public class ExerciseInput extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercise_input, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercise_input, container, false);
+        db = new DiabetesSqlHelper(getActivity());
+        exerciseInput = (EditText) view.findViewById(R.id.EditTextExerciseInput);
+        date = (EditText) view.findViewById(R.id.EditTextDate);
+        time = (EditText) view.findViewById(R.id.EditTextTime);
+        submit = (Button) view.findViewById(R.id.ButtonSubmitExercise);
+        submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if (exerciseInput.getText().toString().equals("") || date.getText().toString().equals("") || time.getText().toString().equals("")) {
+                    Toast toaster = Toast.makeText(getActivity(), "Enter values for all fields", Toast.LENGTH_LONG);
+                    toaster.show();
+                }
+                else{
+                    db.insertExercise(exerciseInput.getText().toString(), date.getText().toString(), time.getText().toString());
+                    exerciseInput.getText().clear();
+                    date.getText().clear();
+                    time.getText().clear();
+                    Toast toast = Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT);
+                    toast.show();
+                    exerciseInput.requestFocus();
+                }
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

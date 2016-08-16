@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="20"
-        android:id="@+id/EditTextPrescribedDietInput"
-        android:hint="@string/enter_prescribed_diet"
+        android:id="@+id/EditTextRegimen"
+        android:hint="@string/enter_regimen_component"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="75dp"
@@ -27,33 +27,31 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:ems="20"
-        android:id="@+id/EditTextPrescribedExerciseInput"
-        android:hint="@string/enter_prescribed_exercise"
+        android:id="@+id/EditTextTime"
+        android:hint="@string/enter_time"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="75dp"
-        android:layout_marginRight="75dp" />
+        android:layout_marginRight="75dp"
+        android:inputType="time" />
 
-    <EditText
-        android:layout_width="fill_parent"
+    <Spinner
+        android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="20"
-        android:id="@+id/EditTextPrescribedMedicationInput"
-        android:hint="@string/enter_prescribed_medication"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginRight="75dp" />
+        android:id="@+id/spinnerType"
+        android:layout_gravity="center_horizontal"
+        android:spinnerMode="dropdown"
+        android:entries="@array/spinner_types"
+        android:focusableInTouchMode="false"
+        android:textAlignment="center" />
 
     <Button
         style="?android:attr/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:id="@+id/ButtonSubmitPrescribedMedication"
+        android:id="@+id/ButtonSubmitRegimen"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>
 

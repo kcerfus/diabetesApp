@@ -95,6 +95,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
 
         values.put(Exercise.NAME,name);
+        values.put(Exercise.DATE,date);
         values.put(Exercise.TIME,time);
 
         long addedToTable = db.insert(Exercise.TABLE_NAME,null,values);

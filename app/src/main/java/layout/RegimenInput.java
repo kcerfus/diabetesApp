@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import Database.DiabetesSqlHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +33,12 @@ public class RegimenInput extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private EditText regimenInput;
+    private EditText time;
+    private Spinner type;
+    private Button submit;
+    private DiabetesSqlHelper db;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +77,30 @@ public class RegimenInput extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_regimen_input, container, false);
+        View view = inflater.inflate(R.layout.fragment_regimen_input, container, false);
+        db = new DiabetesSqlHelper(getActivity());
+        regimenInput = (EditText) view.findViewById(R.id.EditTextRegimen);
+        type = (Spinner) view.findViewById(R.id.spinnerType);
+        time = (EditText) view.findViewById(R.id.EditTextTime);
+        submit = (Button) view.findViewById(R.id.ButtonSubmitRegimen);
+        submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if (regimenInput.getText().toString().equals("") || time.getText().toString().equals("") || type.getSelectedItem().toString().equals("")){
+                    Toast toaster = Toast.makeText(getActivity(), "Enter values for all fields", Toast.LENGTH_LONG);
+                    toaster.show();
+                }
+                else{
+                    db.insertRegimen(regimenInput.getText().toString(), type.getSelectedItem().toString(), time.getText().toString());
+                    regimenInput.getText().clear();
+                    time.getText().clear();
+                    Toast toast = Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT);
+                    toast.show();
+                    regimenInput.requestFocus();
+                }
+            }
+        });
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -95,5 +95,5 @@ public class WundergradsDb extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ regTable);
         onCreate(sqLiteDatabase);
     }
-    
+
 }

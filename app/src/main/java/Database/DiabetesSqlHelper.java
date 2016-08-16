@@ -12,12 +12,12 @@ import android.provider.BaseColumns;
 public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     // need these attributes for our columns values, they are all supported by SQLite
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA_SEP = ",";
-    private static final String AUTOINCREMENT = "AUTOINCREMENT";
-    private static final String NOT_NULL = "NOT NULL";
-    private static final String REAL = "REAL";
-    private static final String UNIQUE = "UNIQUE";
+    private static final String TEXT_TYPE = " TEXT ";
+    private static final String COMMA_SEP = " , ";
+    private static final String AUTOINCREMENT = " AUTOINCREMENT ";
+    private static final String NOT_NULL = " NOT NULL ";
+    private static final String REAL = " REAL ";
+    private static final String UNIQUE = " UNIQUE ";
 
     private static String dbName = "Diabetes.db";
     private static SQLiteDatabase db;

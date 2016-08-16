@@ -62,7 +62,7 @@ public final class FeedReaderContract {
         }
 
         // method to add values to new row in table
-        private boolean insert(int id, int bgl, String time) {
+        public boolean insert(int id, int bgl, String time) {
             db = super.getWritableDatabase();
             ContentValues values = new ContentValues();
 

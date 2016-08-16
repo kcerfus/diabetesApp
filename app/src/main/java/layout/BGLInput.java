@@ -7,8 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import Database.DiabetesSqlHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,10 +32,17 @@ public class BGLInput extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    private EditText bglInput;
+    private EditText date;
+    private EditText time;
+    private Button submit;
+    private DiabetesSqlHelper dbHelper;
+
     private OnFragmentInteractionListener mListener;
 
     public BGLInput() {
-        // Required empty public constructor
+
     }
 
     /**
@@ -59,13 +70,26 @@ public class BGLInput extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bglinput, container, false);
+        View view = inflater.inflate(R.layout.fragment_bglinput, container, false);
+        dbHelper = new DiabetesSqlHelper(getActivity());
+        bglInput = (EditText) view.findViewById(R.id.EditTextBGLInput);
+        date = (EditText) view.findViewById(R.id.EditTextDate);
+        time = (EditText) view.findViewById(R.id.EditTextTime);
+        submit = (Button) view.findViewById(R.id.ButtonSubmitBGL);
+        submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                if(!bglInput.getText().toString().equals("") && !date.getText().toString().equals("") && !time.getText().toString().equals(""))
+                    dbHelper.insertBgl(Integer.parseInt(bglInput.getText().toString()), date.getText().toString(), time.getText().toString());
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

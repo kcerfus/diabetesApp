@@ -56,7 +56,10 @@ public final class FeedReaderContract {
 
         // Need to implement it, but we wont be changing database so its unnecessary
         @Override
-        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {
+            db.execSQL(SQL_DELETE_ENTRIES);
+            onCreate(db);
+        }
 
         // method to add values to new row in table
         private boolean insert(int id, int bgl, String time) {
@@ -109,7 +112,10 @@ public final class FeedReaderContract {
 
         // Need to implement it, but we wont be changing database so its unnecessary
         @Override
-        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {
+            db.execSQL(SQL_DELETE_ENTRIES);
+            onCreate(db);
+        }
 
         // method to add values to new row in table
         public boolean insert(long id, String name, String time, int calories) {
@@ -158,7 +164,10 @@ public final class FeedReaderContract {
 
         // Need to implement it, but we wont be changing database so its unnecessary
         @Override
-        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {
+            db.execSQL(SQL_DELETE_ENTRIES);
+            onCreate(db);
+        }
 
         // method to add values to new row in table
         private boolean insert(int id, String name, String time, int calories) {
@@ -207,7 +216,10 @@ public final class FeedReaderContract {
 
         // Need to implement it, but we wont be changing database so its unnecessary
         @Override
-        public void onUpgrade(SQLiteDatabase db, int a, int b) {}
+        public void onUpgrade(SQLiteDatabase db, int a, int b) {
+            db.execSQL(SQL_DELETE_ENTRIES);
+            onCreate(db);
+        }
 
         // method to add values to new row in table
         private boolean insert(int id, String name, String time, int dose) {
@@ -261,6 +273,8 @@ public final class FeedReaderContract {
         // Need to implement it, but we wont be changing database so its unnecessary
         @Override
         public void onUpgrade(SQLiteDatabase db, int a, int b) {
+            db.execSQL(SQL_DELETE_ENTRIES);
+            onCreate(db);
         }
 
         // method to add values to new row in table

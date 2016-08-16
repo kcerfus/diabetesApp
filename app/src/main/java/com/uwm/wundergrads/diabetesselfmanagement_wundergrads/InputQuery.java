@@ -79,13 +79,12 @@ public class InputQuery extends AppCompatActivity implements BGLInput.OnFragment
 
     public void setButtons() {
         // Trying to remove clutter from onCreate, all categories will have a submit button which are what these buttons are
-        // NOTE: These buttons are ONLY for the input so far, no Query yet
         dietButton = (Button) findViewById(R.id.ButtonSubmitDiet);
         medButton = (Button) findViewById(R.id.ButtonSubmitMedication);
         exerciseButton = (Button) findViewById(R.id.ButtonSubmitExercise);
         bglButton = (Button) findViewById(R.id.ButtonSubmitBGL);
 
-        ArrayList<Button> buttons = new ArrayList<Button>();
+        ArrayList<Button> buttons = new ArrayList<>();
         buttons.add(dietButton);
         buttons.add(medButton);
         buttons.add(exerciseButton);

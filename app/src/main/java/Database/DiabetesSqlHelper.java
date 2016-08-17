@@ -64,10 +64,39 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
     }
         public Cursor queryBgl(String maxBgl, String minBgl, String startDate, String endDate, String earliestTime, String latestTime) {
             db = super.getReadableDatabase();
-            String query = "SELECT * FROM " + BloodGlucoseMeasurement.TABLE_NAME + " WHERE ";
-            query+=getBglMaxMinString(minBgl,maxBgl) + AND + getDateString(startDate,endDate,BloodGlucoseMeasurement.DATE) + AND + getTimeString(earliestTime,latestTime,BloodGlucoseMeasurement.TIME);
+            String query = "SELECT * FROM " + BloodGlucoseMeasurement.TABLE_NAME;
+            String whereClause = " WHERE ";
+
+            String bglResult = getBglMaxMinString(minBgl,maxBgl);
+            if(!bglResult.equals("")){
+                whereClause.concat(bglResult);
+            }
+
+            String dateResult = getDateString(startDate,endDate,BloodGlucoseMeasurement.DATE);
+            if(!dateResult.equals("")){
+                if(!whereClause.equals(" WHERE ")){
+                    whereClause.concat(" AND ");
+                }
+                whereClause.concat(dateResult);
+            }
+
+            String timeResult =  getTimeString(earliestTime,latestTime,BloodGlucoseMeasurement.TIME);
+            if(!timeResult.equals("")) {
+                if (!whereClause.equals(" WHERE ")) {
+                    whereClause.concat(" AND ");
+                }
+                whereClause.concat(timeResult);
+            }
+            query.concat(whereClause);
             Cursor c = db.rawQuery(query,null);
             return c;
+        }
+
+        public Cursor queryExercise(boolean exact, String exercise, String startDate, String endDate, String earliestTime, String latestTime){
+            db=super.getReadableDatabase();
+            String query = "SELECT * FROM " + Exercise.TABLE_NAME + " WHERE ";
+            return null;
+            //query
         }
 
         private String getBglMaxMinString(String bglMin, String bglMax) {

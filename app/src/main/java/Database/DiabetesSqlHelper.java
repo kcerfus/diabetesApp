@@ -87,7 +87,10 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
                 }
                 whereClause.concat(timeResult);
             }
-            query.concat(whereClause);
+            if(!whereClause.equals(" WHERE ")) {
+                query.concat(whereClause);
+            }
+
             Cursor c = db.rawQuery(query,null);
             return c;
         }

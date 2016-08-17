@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+
+import Database.DiabetesSqlHelper;
 
 public class StatsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -19,9 +22,12 @@ public class StatsFragment extends Fragment {
     private static final String ARG_PARAM4 = "param4";
     private static final String ARG_PARAM5 = "param5";
     private static final String ARG_PARAM6 = "param6";
-
+    private static final String ARG_PARAM7 = "exact";
+    private static final String ARG_PARAM8 = "value2";
     // TODO: Rename and change types of parameters
-    private String mode, value, startDate, endDate, startTime, endTime;
+    private String mode, value, value2, startDate, endDate, startTime, endTime;
+    private boolean exact;
+    private DiabetesSqlHelper db;
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,6 +45,8 @@ public class StatsFragment extends Fragment {
         args.putString(ARG_PARAM4, param4);
         args.putString(ARG_PARAM5, param5);
         args.putString(ARG_PARAM6, param6);
+        args.putBoolean(ARG_PARAM7, exact);
+        args.putString(ARG_PARAM8, value2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,10 +57,12 @@ public class StatsFragment extends Fragment {
         if (getArguments() != null) {
             mode = getArguments().getString(ARG_PARAM1);
             value= getArguments().getString(ARG_PARAM2);
+            value2 = getArguments().getString(ARG_PARAM8);
             startDate = getArguments().getString(ARG_PARAM3);
             endDate = getArguments().getString(ARG_PARAM4);
             startTime = getArguments().getString(ARG_PARAM5);
             endTime = getArguments().getString(ARG_PARAM6);
+            exact = getArguments().getBoolean(ARG_PARAM7);
         }
         loadStats();
     }
@@ -61,8 +71,17 @@ public class StatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
+       /* switch(mode){
+            case "BGL" : loadBGLStats();
+            case "Diet" : loadDietStats();
+            case "Exercise" : loadExerciseStats();
+            case "Medication" : loadMedicationStats();
+        }*/
+        return view;
     }
+
+
 
     @Override
     public void onAttach(Context context) {

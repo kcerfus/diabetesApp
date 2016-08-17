@@ -137,6 +137,7 @@ public class GraphFragment extends Fragment {
     public void loadDietGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        Cursor cursor = db.queryDiet(exact, value, startDate, endDate, startTime, endTime);
 
         BarChart chart = new BarChart(getContext());
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);

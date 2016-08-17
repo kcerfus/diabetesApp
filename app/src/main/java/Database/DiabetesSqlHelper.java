@@ -24,7 +24,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     private static String dbName = "Diabetes.db";
     private static SQLiteDatabase db;
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public DiabetesSqlHelper(Context context){
             super(context, dbName, null, DATABASE_VERSION);
@@ -309,7 +309,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
     public static abstract class BloodGlucoseMeasurement implements BaseColumns {
         // Define title and column names
         public static final String TABLE_NAME = "BloodGlucoseMeasurement";
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String BGL = "BGL";
         public static final String DATE = "Date";
         public static final String TIME = "Time";
@@ -330,7 +330,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
     public static abstract class Diet implements BaseColumns {
         // Define title and column names
         public static final String TABLE_NAME = "DIET";
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String NAME = "Name";
         public static final String DATE = "Date";
         public static final String TIME = "Time";
@@ -349,7 +349,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     public static abstract class Exercise implements BaseColumns {
         public static final String TABLE_NAME = "EXERCISE";
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String NAME = "Name";
         public static final String DATE = "Date";
         public static final String TIME = "Time";
@@ -368,7 +368,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     public static abstract class Medication implements BaseColumns {
         public static final String TABLE_NAME = "MEDICATION";
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String NAME = "Name";
         public static final String DATE = "Date";
         public static final String TIME = "Time";
@@ -386,7 +386,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     public static abstract class Regimen implements BaseColumns {
         public static final String TABLE_NAME = "REGIMEN";
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String REGIMEN_NAME = "RegimenName";
         public static final String REGIMEN_TYPE = "RegimenType";
         public static final String TIME = "Time";

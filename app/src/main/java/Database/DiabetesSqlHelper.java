@@ -96,20 +96,95 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
         }
 
         public Cursor queryExercise(boolean exact, String exercise, String startDate, String endDate, String earliestTime, String latestTime){
-            db=super.getReadableDatabase();
-            String query = "SELECT * FROM " + Exercise.TABLE_NAME + " WHERE ";
-            return null;
-            //query
+            db = super.getReadableDatabase();
+            String query = "SELECT * FROM " + Exercise.TABLE_NAME;
+            String whereClause = " WHERE ";
+
+            String whereExercise = "";
+            if(!exercise.equals("")){
+                if(exact){
+                    whereExercise = Exercise.NAME + " = '" + exercise+ "'";
+                }
+                else{
+                    whereExercise = Exercise.NAME + " LIKE '%" + exercise + "%'";
+                }
+            }
+            if(!whereExercise.equals("")){
+                whereClause.concat(whereExercise);
+            }
+
+            String dateResult = getDateString(startDate,endDate,Exercise.DATE);
+            if(!dateResult.equals("")){
+                if(!whereClause.equals(" WHERE ")){
+                    whereClause.concat(" AND ");
+                }
+                whereClause.concat(dateResult);
+            }
+
+            String timeResult =  getTimeString(earliestTime,latestTime,Exercise.TIME);
+            if(!timeResult.equals("")) {
+                if (!whereClause.equals(" WHERE ")) {
+                    whereClause.concat(" AND ");
+                }
+                whereClause.concat(timeResult);
+            }
+            if(!whereClause.equals(" WHERE ")) {
+                query.concat(whereClause);
+            }
+
+            Cursor c = db.rawQuery(query,null);
+            return c;
         }
+
+    public Cursor queryMedication(boolean exact, String medication, String startDate, String endDate, String earliestTime, String latestTime){
+        db = super.getReadableDatabase();
+        String query = "SELECT * FROM " + Medication.TABLE_NAME;
+        String whereClause = " WHERE ";
+
+        String whereExercise = "";
+        if(!medication.equals("")){
+            if(exact){
+                whereExercise = Medication.NAME + " = '" + medication + "'";
+            }
+            else{
+                whereExercise = Medication.NAME + " LIKE '%" + medication + "%'";
+            }
+        }
+        if(!whereExercise.equals("")){
+            whereClause.concat(whereExercise);
+        }
+
+        String dateResult = getDateString(startDate,endDate,Medication.DATE);
+        if(!dateResult.equals("")){
+            if(!whereClause.equals(" WHERE ")){
+                whereClause.concat(" AND ");
+            }
+            whereClause.concat(dateResult);
+        }
+
+        String timeResult =  getTimeString(earliestTime,latestTime,Medication.TIME);
+        if(!timeResult.equals("")) {
+            if (!whereClause.equals(" WHERE ")) {
+                whereClause.concat(" AND ");
+            }
+            whereClause.concat(timeResult);
+        }
+        if(!whereClause.equals(" WHERE ")) {
+            query.concat(whereClause);
+        }
+
+        Cursor c = db.rawQuery(query,null);
+        return c;
+    }
 
         private String getBglMaxMinString(String bglMin, String bglMax) {
             String result = "";
             if(!(bglMin.equals("") || bglMax.equals("")))
                 result = BloodGlucoseMeasurement.BGL + BETWEEN + bglMin + AND + bglMax;
             else if(bglMin.equals("") && !(bglMax.equals("")))
-                result = BloodGlucoseMeasurement.BGL + " < " + bglMax;
+                result = BloodGlucoseMeasurement.BGL + " <= " + bglMax;
             else if(!(bglMin.equals("") && bglMax.equals("")))
-                result = BloodGlucoseMeasurement.BGL + " > " + bglMin;
+                result = BloodGlucoseMeasurement.BGL + " >= " + bglMin;
             return result;
         }
 
@@ -117,11 +192,11 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
         private String getDateString(String startDate, String endDate, String colName) {
             String result = "";
             if(!(startDate.equals("") || endDate.equals("")))
-                result = colName + BETWEEN + startDate + AND + endDate;
+                result = colName + BETWEEN + "'"+ startDate+"'" + AND + "'"+endDate +"'";
             else if(startDate.equals("") && !(endDate.equals("")))
-                result = colName + " < " + endDate;
+                result = colName + " <= " + "'"+endDate+"'";
             else if(!(startDate.equals("") && endDate.equals("")))
-                result = colName + " > " + startDate;
+                result = colName + " >= " + "'" +startDate + "'";
             return result;
         }
 
@@ -129,11 +204,11 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
         private String getTimeString(String startTime, String endTime, String colName){
             String result = "";
             if(!(startTime.equals("") || endTime.equals("")))
-                result = colName + BETWEEN + startTime + AND + endTime;
+                result = colName + BETWEEN + "'"+ startTime + "'" + AND + "'"+ endTime+"'";
             else if(startTime.equals("") && !(endTime.equals("")))
-                result = colName + " < " + endTime;
+                result = colName + " <= " + "'" + endTime + "'";
             else if(!(startTime.equals("") && endTime.equals("")))
-                result = colName + " > " + startTime;
+                result = colName + " >= " + "'" + startTime + "'";
             return result;
         }
 

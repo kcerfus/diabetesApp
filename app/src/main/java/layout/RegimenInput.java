@@ -1,9 +1,16 @@
 package layout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.icu.util.GregorianCalendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +20,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
+import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.RegimenNotification;
+
+import java.util.Date;
 
 import Database.DiabetesSqlHelper;
 
@@ -36,7 +46,7 @@ public class RegimenInput extends Fragment {
 
     private EditText regimenInput;
     private EditText time;
-    private Spinner type;
+    private Spinner type, month, day, year, hour, minute, AM_PM;
     private Button submit;
     private DiabetesSqlHelper db;
 
@@ -83,6 +93,12 @@ public class RegimenInput extends Fragment {
         type = (Spinner) view.findViewById(R.id.spinnerType);
         time = (EditText) view.findViewById(R.id.EditTextTime);
         submit = (Button) view.findViewById(R.id.ButtonSubmitRegimen);
+        month = (Spinner)view.findViewById(R.id.spinnerMonth);
+        day = (Spinner)view.findViewById(R.id.spinnerDay);
+        year= (Spinner)view.findViewById(R.id.spinnerYear);
+        hour = (Spinner)view.findViewById(R.id.spinnerHour);
+        minute = (Spinner)view.findViewById(R.id.spinnerMinute);
+        AM_PM = (Spinner)view.findViewById(R.id.spinnerAM_PM);
         submit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if (regimenInput.getText().toString().equals("") || time.getText().toString().equals("") || type.getSelectedItem().toString().equals("")){
@@ -90,6 +106,23 @@ public class RegimenInput extends Fragment {
                     toaster.show();
                 }
                 else{
+                    AlarmManager alarmManager = (AlarmManager)getContext().getSystemService(Context.ALARM_SERVICE);
+                    Intent intent = new Intent(getContext(), RegimenNotification.class);
+                    intent.putExtra("mode", type.getSelectedItem().toString());
+                    intent.putExtra("value", regimenInput.getText());
+                    PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
+
+                    Date dateTime = new Date(Integer.parseInt(year.getSelectedItem().toString())-1900,
+                                            Integer.parseInt(month.getSelectedItem().toString())-1,
+                                            Integer.parseInt(day.getSelectedItem().toString()),
+                                            Integer.parseInt(hour.getSelectedItem().toString()),
+                                            Integer.parseInt(minute.getSelectedItem().toString()));
+
+                    if (AM_PM.getSelectedItem().toString() == "PM" && dateTime.getHours() != 12){ dateTime.setHours(dateTime.getHours() + 12); }
+                    if (AM_PM.getSelectedItem().toString() == "AM" && dateTime.getHours() == 12){ dateTime.setHours(0); }
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, dateTime.getTime(), alarmIntent);
+
                     db.insertRegimen(regimenInput.getText().toString(), type.getSelectedItem().toString(), time.getText().toString());
                     regimenInput.getText().clear();
                     time.getText().clear();

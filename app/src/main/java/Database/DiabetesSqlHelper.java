@@ -135,6 +135,46 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
             Cursor c = db.rawQuery(query,null);
             return c;
         }
+    public Cursor queryDiet(boolean exact, String diet, String startDate, String endDate,String earliestTime, String latestTime) {
+        db = super.getReadableDatabase();
+        String query = "SELECT * FROM " + Diet.TABLE_NAME;
+        String whereClause = " WHERE ";
+
+        String whereExercise = "";
+        if(!diet.equals("")){
+            if(exact){
+                whereExercise = Diet.NAME + " = '" + diet + "'";
+            }
+            else{
+                whereExercise = Diet.NAME + " LIKE '%" + diet + "%'";
+            }
+        }
+        if(!whereExercise.equals("")){
+            whereClause.concat(whereExercise);
+        }
+
+        String dateResult = getDateString(startDate,endDate,Diet.DATE);
+        if(!dateResult.equals("")){
+            if(!whereClause.equals(" WHERE ")){
+                whereClause.concat(" AND ");
+            }
+            whereClause.concat(dateResult);
+        }
+
+        String timeResult =  getTimeString(earliestTime,latestTime,Diet.TIME);
+        if(!timeResult.equals("")) {
+            if (!whereClause.equals(" WHERE ")) {
+                whereClause.concat(" AND ");
+            }
+            whereClause.concat(timeResult);
+        }
+        if(!whereClause.equals(" WHERE ")) {
+            query.concat(whereClause);
+        }
+
+        Cursor c = db.rawQuery(query,null);
+        return c;
+    }
 
     public Cursor queryMedication(boolean exact, String medication, String startDate, String endDate, String earliestTime, String latestTime){
         db = super.getReadableDatabase();

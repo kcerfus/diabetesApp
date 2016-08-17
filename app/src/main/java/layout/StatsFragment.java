@@ -30,7 +30,7 @@ public class StatsFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static StatsFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6) {
+    public static StatsFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6, boolean exact, String value2) {
         StatsFragment fragment = new StatsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

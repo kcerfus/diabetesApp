@@ -30,7 +30,7 @@ public class TableFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static TableFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6) {
+    public static TableFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6, boolean exact, String value2) {
         TableFragment fragment = new TableFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

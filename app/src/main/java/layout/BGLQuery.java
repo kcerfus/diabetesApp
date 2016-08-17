@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.GraphTableStats;
@@ -36,6 +37,7 @@ public class BGLQuery extends Fragment {
 
     private Button search;
     private EditText maxBGL, minBGL, startDate, endDate, startTime, endTime;
+    private CheckBox exact;
 
     public BGLQuery() {
         // Required empty public constructor
@@ -87,11 +89,13 @@ public class BGLQuery extends Fragment {
             public void onClick(View v){
                 Intent intent = new Intent(getContext(), GraphTableStats.class );
                 intent.putExtra("mode", "BGL");
-                intent.putExtra("value", minBGL.getText() + " - " + maxBGL.getText());
-                intent.putExtra("startDate", startDate.getText());
-                intent.putExtra("endDate", endDate.getText());
-                intent.putExtra("startTime", startTime.getText());
-                intent.putExtra("endTime", endTime.getText());
+                intent.putExtra("value", minBGL.getText().toString());
+                intent.putExtra("value2", maxBGL.getText().toString());
+                intent.putExtra("startDate", startDate.getText().toString());
+                intent.putExtra("endDate", endDate.getText().toString());
+                intent.putExtra("startTime", startTime.getText().toString());
+                intent.putExtra("endTime", endTime.getText().toString());
+                intent.putExtra("exact", false);
                 startActivity(intent);
             }
         });

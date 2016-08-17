@@ -44,7 +44,8 @@ public class GraphTableStats extends AppCompatActivity implements GraphFragment.
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    private String mode, value, startDate, endDate, startTime, endTime;
+    private String mode, value, value2, startDate, endDate, startTime, endTime;
+    private boolean exact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,12 @@ public class GraphTableStats extends AppCompatActivity implements GraphFragment.
         Intent intent = getIntent();
         mode = intent.getStringExtra("mode");
         value = intent.getStringExtra("value");
+        value2 = intent.getStringExtra("value2");
         startDate = intent.getStringExtra("startDate");
         endDate = intent.getStringExtra("endDate");
         startTime = intent.getStringExtra("startTime");
         endTime = intent.getStringExtra("endTime");
+        exact = intent.getBooleanExtra("exact", false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -119,9 +122,9 @@ public class GraphTableStats extends AppCompatActivity implements GraphFragment.
         @Override
         public Fragment getItem(int position) {
             switch(position){
-                case 0: return GraphFragment.newInstance(mode, value, startDate, endDate, startTime, endTime);
-                case 1: return TableFragment.newInstance(mode, value, startDate, endDate, startTime, endTime);
-                case 2: return StatsFragment.newInstance(mode, value, startDate, endDate, startTime, endTime);
+                case 0: return GraphFragment.newInstance(mode, value, startDate, endDate, startTime, endTime, exact, value2);
+                case 1: return TableFragment.newInstance(mode, value, startDate, endDate, startTime, endTime, exact, value2);
+                case 2: return StatsFragment.newInstance(mode, value, startDate, endDate, startTime, endTime, exact, value2);
                 default: return null;
             }
         }

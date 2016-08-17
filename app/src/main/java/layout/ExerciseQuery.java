@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.GraphTableStats;
@@ -36,6 +37,7 @@ public class ExerciseQuery extends Fragment {
 
     private Button search;
     private EditText value, startDate, endDate, startTime, endTime;
+    private CheckBox exact;
 
     public ExerciseQuery() {
         // Required empty public constructor
@@ -78,17 +80,19 @@ public class ExerciseQuery extends Fragment {
         endDate = (EditText) view.findViewById(R.id.editTextEndDate);
         startTime = (EditText) view.findViewById(R.id.editTextEarliestTime);
         endTime = (EditText) view.findViewById(R.id.editTextLatestTime);
-
+        exact = (CheckBox) view.findViewById(R.id.checkBoxExactMatch);
         search = (Button) view.findViewById(R.id.buttonSearch);
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 Intent intent = new Intent(getContext(), GraphTableStats.class );
                 intent.putExtra("mode", "Exercise");
-                intent.putExtra("value", value.getText());
-                intent.putExtra("startDate", startDate.getText());
-                intent.putExtra("endDate", endDate.getText());
-                intent.putExtra("startTime", startTime.getText());
-                intent.putExtra("endTime", endTime.getText());
+                intent.putExtra("value", value.getText().toString());
+                intent.putExtra("value2", "");
+                intent.putExtra("startDate", startDate.getText().toString());
+                intent.putExtra("endDate", endDate.getText().toString());
+                intent.putExtra("startTime", startTime.getText().toString());
+                intent.putExtra("endTime", endTime.getText().toString());
+                intent.putExtra("exact", exact.isChecked());
                 startActivity(intent);
             }
         });

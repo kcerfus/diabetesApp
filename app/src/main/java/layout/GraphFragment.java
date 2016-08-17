@@ -1,6 +1,7 @@
 package layout;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,8 @@ import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import Database.DiabetesSqlHelper;
+
 public class GraphFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,9 +34,12 @@ public class GraphFragment extends Fragment {
     private static final String ARG_PARAM4 = "param4";
     private static final String ARG_PARAM5 = "param5";
     private static final String ARG_PARAM6 = "param6";
-
+    private static final String ARG_PARAM7 = "exact";
+    private static final String ARG_PARAM8 = "value2";
     // TODO: Rename and change types of parameters
-    private String mode, value, startDate, endDate, startTime, endTime;
+    private String mode, value, value2, startDate, endDate, startTime, endTime;
+    private boolean exact;
+    private DiabetesSqlHelper db;
 
     private OnFragmentInteractionListener mListener;
 
@@ -42,7 +48,7 @@ public class GraphFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static GraphFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6) {
+    public static GraphFragment newInstance(String param1, String param2, String param3, String param4, String param5, String param6, boolean exact, String value2) {
         GraphFragment fragment = new GraphFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -51,6 +57,8 @@ public class GraphFragment extends Fragment {
         args.putString(ARG_PARAM4, param4);
         args.putString(ARG_PARAM5, param5);
         args.putString(ARG_PARAM6, param6);
+        args.putBoolean(ARG_PARAM7, exact);
+        args.putString(ARG_PARAM8, value2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,10 +69,12 @@ public class GraphFragment extends Fragment {
         if (getArguments() != null) {
             mode = getArguments().getString(ARG_PARAM1);
             value = getArguments().getString(ARG_PARAM2);
+            value2 = getArguments().getString(ARG_PARAM8);
             startDate = getArguments().getString(ARG_PARAM3);
             endDate = getArguments().getString(ARG_PARAM4);
             startTime = getArguments().getString(ARG_PARAM5);
             endTime = getArguments().getString(ARG_PARAM6);
+            exact = getArguments().getBoolean(ARG_PARAM7);
         }
     }
 
@@ -73,6 +83,7 @@ public class GraphFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_graph, container, false);
+        db = new DiabetesSqlHelper(getActivity());
         switch (mode){
             case "BGL": loadBGLGraph(view);
             case "Diet": loadDietGraph(view);
@@ -106,7 +117,8 @@ public class GraphFragment extends Fragment {
 
     public void loadBGLGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
-
+        Cursor cursor = db.queryBgl(value2, value, startDate, endDate, startTime, endTime);
+        cursor.getColumnNames();
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
         LineChart chart = new LineChart(getContext());
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
@@ -125,6 +137,7 @@ public class GraphFragment extends Fragment {
     public void loadDietGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+
         BarChart chart = new BarChart(getContext());
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -142,6 +155,8 @@ public class GraphFragment extends Fragment {
     public void loadExerciseGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+       Cursor cursor =  db.queryExercise(exact, value, startDate, endDate, startTime, endTime);
+        cursor.getColumnNames();
         BarChart chart = new BarChart(getContext());
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -159,6 +174,9 @@ public class GraphFragment extends Fragment {
     public void loadMedicationGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
+        Cursor cursor = db.queryMedication(exact, value, startDate, endDate, startTime, endTime);
+        cursor.getColumnNames();
+
         LineChart chart = new LineChart(getContext());
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.graphFragment);
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

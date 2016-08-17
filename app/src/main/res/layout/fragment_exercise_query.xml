@@ -23,15 +23,15 @@
         android:layout_below="@+id/imageViewExerciseImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/checkBox"
-        android:layout_toStartOf="@+id/checkBox"
+        android:layout_toLeftOf="@+id/checkBoxExactMatch"
+        android:layout_toStartOf="@+id/checkBoxExactMatch"
         android:hint="@string/enter_exercise" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/exact_match"
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxExactMatch"
         android:layout_below="@+id/imageViewExerciseImage"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

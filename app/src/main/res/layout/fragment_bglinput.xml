@@ -35,7 +35,8 @@
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
         android:layout_gravity="center_horizontal"
-        android:inputType="time" />
+        android:inputType="time"
+        android:focusableInTouchMode="false"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
         android:layout_gravity="center_horizontal"
-        android:inputType="time" />
+        android:inputType="time"
+        android:focusableInTouchMode="false"/>
 
     <Button
         style="?android:attr/button"

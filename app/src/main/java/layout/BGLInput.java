@@ -84,6 +84,16 @@ public class BGLInput extends Fragment {
         date = (EditText) view.findViewById(R.id.EditTextDate);
         time = (EditText) view.findViewById(R.id.EditTextTime);
         submit = (Button) view.findViewById(R.id.ButtonSubmitBGL);
+        date.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                MyEditTextDatePicker datePicker = new MyEditTextDatePicker(getContext(),date.getId());
+            }
+        });
+        time.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                MyEditTextTimePicker timePicker = new MyEditTextTimePicker(getContext(),time.getId());
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if (bglInput.getText().toString().equals("") || date.getText().toString().equals("") || time.getText().toString().equals("")) {

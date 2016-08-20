@@ -6,17 +6,9 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Locale;
-import java.text.SimpleDateFormat;
-
-import android.icu.util.GregorianCalendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +23,10 @@ import android.widget.Toast;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.RegimenNotification;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import Database.DiabetesSqlHelper;
 

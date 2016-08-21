@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.github.mikephil.charting.charts.*;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -125,12 +125,16 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<Entry> entries = new ArrayList<Entry>();
-        entries.add(new Entry(0, 0));
-        entries.add(new Entry(1, 3));
-        entries.add(new Entry(2, 6));
-        entries.add(new Entry(3, 2));
-        entries.add(new Entry(4, 4));
-        chart.setData(new LineData(new LineDataSet(entries, "Placeholder Graph")));
+        try {
+            while (cursor.moveToNext()) {
+                String a = Integer.toString(cursor.getColumnIndex("BGL"));
+                String b = Integer.toString(cursor.getColumnIndex("DATE"));
+                entries.add(new Entry(Float.parseFloat(a),(Float.parseFloat(b))));
+            }
+        } finally {
+            cursor.close();
+        }
+        chart.setData(new LineData(new LineDataSet(entries, "BGL Graph")));
         chart.invalidate();
     }
 
@@ -144,12 +148,15 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<BarEntry> entries = new ArrayList<BarEntry>();
-        entries.add(new BarEntry(0, 0));
+        while(cursor.moveToNext()) {
+            entries.add(new BarEntry(Integer.parseInt(cursor.getString(1)),Integer.parseInt(cursor.getString(2))));
+        }
+      /*  entries.add(new BarEntry(0, 0));
         entries.add(new BarEntry(1, 3));
         entries.add(new BarEntry(2, 6));
         entries.add(new BarEntry(3, 2));
-        entries.add(new BarEntry(4, 4));
-        chart.setData(new BarData(new BarDataSet(entries, "Placeholder Graph")));
+        entries.add(new BarEntry(4, 4));*/
+        chart.setData(new BarData(new BarDataSet(entries, "BGL Graph")));
         chart.invalidate();
     }
 

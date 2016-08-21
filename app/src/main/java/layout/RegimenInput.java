@@ -1,9 +1,7 @@
 package layout;
 
 import android.app.AlarmManager;
-import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,20 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.RegimenNotification;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import Database.DiabetesSqlHelper;
 
@@ -48,10 +40,9 @@ public class RegimenInput extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private EditText regimenInput;
-    private TextView time, date;
+    private EditText regimenInput,time, date;
     private Spinner type;
-    private Button submit, setDate, setTime;
+    private Button submit;
     private DiabetesSqlHelper db;
     private int month = 1, day = 1, year = 2016, hour = 12, minute = 0;
 
@@ -96,52 +87,17 @@ public class RegimenInput extends Fragment {
         db = new DiabetesSqlHelper(getActivity());
         regimenInput = (EditText) view.findViewById(R.id.EditTextRegimen);
         type = (Spinner) view.findViewById(R.id.spinnerType);
-        time = (TextView) view.findViewById(R.id.TextViewTime);
-        date = (TextView) view.findViewById(R.id.TextViewDate);
-        setDate = (Button) view.findViewById(R.id.ButtonDate);
-        setTime = (Button) view.findViewById(R.id.ButtonTime);
+        time = (EditText) view.findViewById(R.id.EditTextTime);
+        date = (EditText) view.findViewById(R.id.EditTextDate);
         submit = (Button) view.findViewById(R.id.ButtonSubmitRegimen);
-        setDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                final Calendar currentDate = Calendar.getInstance();
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener(){
-                    @Override
-                    public void onDateSet(DatePicker view, int pickerYear, int pickerMonth, int pickerDay){
-                        year = pickerYear;
-                        month = pickerMonth;
-                        day = pickerDay;
-                        date.setText(String.format(Locale.US, "%d/%d/%d", month + 1, day, year));
-                    }
-
-                }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
+        date.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                MyEditTextDatePicker datePicker = new MyEditTextDatePicker(getContext(),date.getId());
             }
         });
-
-        setTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                final Calendar currentTime = Calendar.getInstance();
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener(){
-                    @Override
-                    public void onTimeSet(TimePicker view, int pickerHour, int pickerMinute){
-                        hour = pickerHour;
-                        minute = pickerMinute;
-                        SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm", Locale.US);
-                        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm", Locale.US);
-                        try {
-                            time.setText(outputFormat.format(inputFormat.parse(hour + ":" + minute)));
-                        }catch(ParseException pe){
-                            Toast toast = Toast.makeText(getActivity(), "Error setting time", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
-
-                }, currentTime.get(Calendar.HOUR), currentTime.get(Calendar.MINUTE), false);
-                timePickerDialog.show();
+        time.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                MyEditTextTimePicker timePicker = new MyEditTextTimePicker(getContext(),time.getId());
             }
         });
         submit.setOnClickListener(new View.OnClickListener(){

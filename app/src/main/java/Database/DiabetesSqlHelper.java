@@ -396,7 +396,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
                         Regimen.ID + " INTEGER PRIMARY KEY" + AUTOINCREMENT + NOT_NULL + UNIQUE + COMMA_SEP +
                         Regimen.REGIMEN_NAME + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                         Regimen.REGIMEN_TYPE + TEXT_TYPE + NOT_NULL + COMMA_SEP +
-                        Regimen.TIME + TEXT_TYPE + NOT_NULL + UNIQUE + ")";
+                        Regimen.TIME + TEXT_TYPE + NOT_NULL+ ")";
 
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Regimen.TABLE_NAME;

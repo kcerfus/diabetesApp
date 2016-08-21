@@ -49,24 +49,24 @@ public class MyEditTextTimePicker implements View.OnClickListener, TimePickerDia
             if(minute > 9) {
                 _editText.setText(new StringBuilder()
                         // Month is 0 based so add 1
-                        .append(hour).append(":").append(minute));
+                        .append(hour).append(minute));
             }
             else {
                 _editText.setText(new StringBuilder()
                         // Month is 0 based so add 1
-                        .append(hour).append(":").append(0).append(minute));
+                        .append(hour).append(0).append(minute));
             }
         }
         else {
             if(minute>9) {
                 _editText.setText(new StringBuilder()
                         // Month is 0 based so add 1
-                        .append(0).append(hour).append(":").append(minute));
+                        .append(0).append(hour).append(minute));
             }
             else {
                 _editText.setText(new StringBuilder()
                         // Month is 0 based so add 1
-                        .append(0).append(hour).append(":").append(0).append(minute));
+                        .append(0).append(hour).append(0).append(minute));
             }
         }
     }

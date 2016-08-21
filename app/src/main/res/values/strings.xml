@@ -81,6 +81,8 @@
     <string name="minute">Minute</string>
     <string name="hour">Hour</string>
     <string name="AM_PM">AM/PM</string>
+    <string name="enter_notification_date">Set notification date</string>
+    <string name="enter_notification_time">Set notification time</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:id="@+id/home_layout"
-    android:background="#bfb6da">
+    android:background="#dad6e6">
 
     <LinearLayout
         android:layout_height="wrap_content"

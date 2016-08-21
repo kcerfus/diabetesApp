@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:id="@+id/home_layout">
+    android:id="@+id/home_layout"
+    android:background="#9a7af9">
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
             android:layout_height="153dp"
             android:text="@string/bgl"
             android:id="@+id/bgl_button"
-            android:drawableTop="@drawable/blood_glucose_image"/>
+            android:drawableTop="@drawable/bgl_tester"/>
 
         <Button
             android:layout_width="189dp"
@@ -36,14 +37,14 @@
             android:layout_height="153dp"
             android:text="@string/exercise"
             android:id="@+id/exercise_button"
-            android:drawableTop="@drawable/exercise_image"/>
+            android:drawableTop="@drawable/exercise_img"/>
 
         <Button
             android:layout_width="189dp"
             android:layout_height="153dp"
             android:text="@string/medication"
             android:id="@+id/medication_button"
-            android:drawableTop="@drawable/medication_image"/>
+            android:drawableTop="@drawable/med_img"/>
     </LinearLayout>
 
     <LinearLayout
@@ -56,7 +57,7 @@
             android:layout_height="153dp"
             android:text="@string/regimen"
             android:id="@+id/reg_button"
-            android:drawableTop="@drawable/regimen_image"/>
+            android:drawableTop="@drawable/reg_img"/>
     </LinearLayout>
 
 </LinearLayout>

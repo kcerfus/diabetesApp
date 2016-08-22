@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.EntryXComparator;
 import com.uwm.wundergrads.diabetesselfmanagement_wundergrads.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Database.DiabetesSqlHelper;
@@ -125,17 +128,24 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<Entry> entries = new ArrayList<Entry>();
-        try {
-            while (cursor.moveToNext()) {
-                String a = Integer.toString(cursor.getColumnIndex("BGL"));
-                String b = Integer.toString(cursor.getColumnIndex("DATE"));
-                entries.add(new Entry(Float.parseFloat(a),(Float.parseFloat(b))));
-            }
-        } finally {
-            cursor.close();
+        while(cursor.moveToNext()) {
+            String bgl = cursor.getString(1);
+            String time = cursor.getString(3);
+            String newTime = parseTime(time);
+            Log.d("" + bgl + " " + newTime,"CONTENTS");
+
+            entries.add(new BarEntry(Integer.parseInt(newTime),Integer.parseInt(bgl)));
         }
+        Collections.sort(entries, new EntryXComparator());
         chart.setData(new LineData(new LineDataSet(entries, "BGL Graph")));
         chart.invalidate();
+    }
+    private String parseTime(String time) {
+        String[] splitTime = time.split(":");
+        String temp = "";
+        for(String s : splitTime)
+            temp += s;
+        return temp;
     }
 
     public void loadDietGraph(View v){
@@ -148,9 +158,7 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<BarEntry> entries = new ArrayList<BarEntry>();
-        while(cursor.moveToNext()) {
-            entries.add(new BarEntry(Integer.parseInt(cursor.getString(1)),Integer.parseInt(cursor.getString(2))));
-        }
+
       /*  entries.add(new BarEntry(0, 0));
         entries.add(new BarEntry(1, 3));
         entries.add(new BarEntry(2, 6));

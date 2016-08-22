@@ -24,7 +24,7 @@ public final class DiabetesSqlHelper extends SQLiteOpenHelper{
 
     private static String dbName = "Diabetes.db";
     private static SQLiteDatabase db;
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     public DiabetesSqlHelper(Context context){
             super(context, dbName, null, DATABASE_VERSION);

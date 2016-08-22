@@ -136,6 +136,7 @@ public class GraphFragment extends Fragment {
 
             entries.add(new BarEntry(Integer.parseInt(newTime),Integer.parseInt(bgl)));
         }
+        // Will have an error if not sorted according to creator
         Collections.sort(entries, new EntryXComparator());
         chart.setData(new LineData(new LineDataSet(entries, "BGL Graph")));
         chart.invalidate();
@@ -148,6 +149,24 @@ public class GraphFragment extends Fragment {
         return temp;
     }
 
+    private String parseDate(String date) {
+        String[] splitTime = date.split("/");
+        String temp = "";
+        for(String s : splitTime)
+            temp += s;
+       temp = myTrim(temp);
+        return temp;
+    }
+
+    private String myTrim(String toBeTrimmed) {
+        String newStr = "";
+        for(int i=0;i<toBeTrimmed.length();++i) {
+            if(toBeTrimmed.charAt(i) != ' ')
+                newStr+=toBeTrimmed.charAt(i);
+        }
+        return newStr;
+    }
+
     public void loadDietGraph(View v){
         // TODO: Query SQLite database using mode, value, startDate, endDate, startTime, and endTime. Display results
         // Below is a placeholder graph to be replaced by a graph fed with data from SQLite
@@ -158,13 +177,18 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<BarEntry> entries = new ArrayList<BarEntry>();
-
-      /*  entries.add(new BarEntry(0, 0));
-        entries.add(new BarEntry(1, 3));
-        entries.add(new BarEntry(2, 6));
-        entries.add(new BarEntry(3, 2));
-        entries.add(new BarEntry(4, 4));*/
-        chart.setData(new BarData(new BarDataSet(entries, "BGL Graph")));
+        while(cursor.moveToNext()) {
+            String date = cursor.getString(2);
+            String time = cursor.getString(3);
+            String newTime = parseTime(time);
+            String newDate = parseDate(date);
+            Log.d("" + date + " " + newTime,"CONTENTS");
+            Entry e = new Entry(0,0,value);
+            entries.add(new BarEntry(Integer.parseInt(newTime),Integer.parseInt(newDate),cursor.getString(1)));
+        }
+        // Will have an error if not sorted according to creator
+        Collections.sort(entries, new EntryXComparator());
+        chart.setData(new BarData(new BarDataSet(entries, "Exercise Chart")));
         chart.invalidate();
     }
 
@@ -178,12 +202,16 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<BarEntry> entries = new ArrayList<BarEntry>();
-        entries.add(new BarEntry(0, 0));
-        entries.add(new BarEntry(1, 3));
-        entries.add(new BarEntry(2, 6));
-        entries.add(new BarEntry(3, 2));
-        entries.add(new BarEntry(4, 4));
-        chart.setData(new BarData(new BarDataSet(entries, "Placeholder Graph")));
+        while(cursor.moveToNext()) {
+            String date = cursor.getString(2);
+            String time = cursor.getString(3);
+            String newTime = parseTime(time);
+            String newDate = parseDate(date);
+            Log.d("" + date + " " + newTime,"CONTENTS");
+            Entry e = new Entry(0,0,value);
+            entries.add(new BarEntry(Integer.parseInt(newTime),Integer.parseInt(newDate),cursor.getString(1)));
+        }
+        chart.setData(new BarData(new BarDataSet(entries, "Exercise Chart")));
         chart.invalidate();
     }
 
@@ -198,12 +226,16 @@ public class GraphFragment extends Fragment {
         chart.setLayoutParams(new LineChart.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.addView(chart);
         List<Entry> entries = new ArrayList<Entry>();
-        entries.add(new Entry(0, 0));
-        entries.add(new Entry(1, 3));
-        entries.add(new Entry(2, 6));
-        entries.add(new Entry(3, 2));
-        entries.add(new Entry(4, 4));
-        chart.setData(new LineData(new LineDataSet(entries, "Placeholder Graph")));
+        while(cursor.moveToNext()) {
+            String date = cursor.getString(2);
+            String time = cursor.getString(3);
+            String newTime = parseTime(time);
+            String newDate = parseDate(date);
+            Log.d("" + date + " " + newTime,"CONTENTS");
+
+            entries.add(new BarEntry(Integer.parseInt(newTime),Integer.parseInt(newDate), value));
+        }
+        chart.setData(new LineData(new LineDataSet(entries, "Medication Graph")));
         chart.invalidate();
     }
 }

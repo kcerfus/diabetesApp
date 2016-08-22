@@ -91,34 +91,34 @@ public class TableFragment extends Fragment {
 
     private void loadMedicationTable() {
         Cursor cursor = db.queryMedication(exact, value, startDate, endDate, startTime, endTime);
-        String[] from = new String[] {DiabetesSqlHelper.Medication.NAME, DiabetesSqlHelper.Medication.DATE, DiabetesSqlHelper.Medication.TIME};
-        int[] to = new int[] {R.id.itemTextView, R.id.itemTextView, R.id.itemTextView};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.fragment_table, cursor,from, to,0);
+        String[] from = new String[] {DiabetesSqlHelper.Medication.NAME, DiabetesSqlHelper.Medication.DATE};
+        int[] to = new int[] {android.R.id.text1, android.R.id.text2};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2, cursor,from, to,0);
         lv.setAdapter(adapter);
     }
 
     private void loadExerciseTable() {
         Cursor cursor =  db.queryExercise(exact, value, startDate, endDate, startTime, endTime);
-        String[] from = new String[] {DiabetesSqlHelper.Exercise.NAME, DiabetesSqlHelper.Exercise.DATE, DiabetesSqlHelper.Exercise.TIME};
-        int[] to = new int[] {R.id.itemTextView, R.id.itemTextView, R.id.itemTextView};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.fragment_table, cursor,from, to,0);
+        String[] from = new String[] {DiabetesSqlHelper.Exercise.NAME, DiabetesSqlHelper.Exercise.DATE};
+        int[] to = new int[] {android.R.id.text1, android.R.id.text2};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2, cursor,from, to,0);
         lv.setAdapter(adapter);
     }
 
     private void loadDietTable() {
         Cursor cursor = db.queryDiet(exact, value, startDate, endDate, startTime, endTime);
-        String[] from = new String[] {DiabetesSqlHelper.Diet.NAME, DiabetesSqlHelper.Diet.DATE, DiabetesSqlHelper.Diet.TIME};
-        int[] to = new int[] {R.id.itemTextView, R.id.itemTextView, R.id.itemTextView};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.fragment_table, cursor,from, to,0);
+        String[] from = new String[] {DiabetesSqlHelper.Diet.NAME, DiabetesSqlHelper.Diet.DATE};
+        int[] to = new int[] {android.R.id.text1, android.R.id.text2};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2, cursor,from, to,0);
         lv.setAdapter(adapter);
     }
 
 
     private void loadBGLTable() {
         Cursor cursor = db.queryBgl(value2, value, startDate, endDate, startTime, endTime);
-        String[] from = new String[] {DiabetesSqlHelper.BloodGlucoseMeasurement.BGL, DiabetesSqlHelper.BloodGlucoseMeasurement.DATE, DiabetesSqlHelper.BloodGlucoseMeasurement.TIME};
-        int[] to = new int[] {R.id.itemTextView, R.id.itemTextView, R.id.itemTextView};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.fragment_table, cursor,from, to,0);
+        String[] from = new String[] {DiabetesSqlHelper.BloodGlucoseMeasurement.BGL, DiabetesSqlHelper.BloodGlucoseMeasurement.DATE};
+        int[] to = new int[] {android.R.id.text1, android.R.id.text2};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2, cursor,from, to,0);
         lv.setAdapter(adapter);
     }
 
